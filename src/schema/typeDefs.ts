@@ -21,21 +21,36 @@ const typeDefs = `#graphql
     users: [User]
     user(id: ID!): User
   }
-  input CreateCustomerInput {
+  input RegisterInput {
     username: String!
     email: String!
     password: String!
     role: UserRole!
 }
+type AuthPayload {
+    token: String
+    message: String
+  }
+type OutputRegister {
+    username: String
+    email: String
+    role:String
+    message: String
+  }
 input UpdateUserInput {
     username: String
     email: String
     role: UserRole
 }
-type Mutation {
-    register(input: CreateCustomerInput!): User
-    updateUser(id: ID!, input: UpdateUserInput!): User
-    deleteUser(id: ID!): User
+input LoginInput {
+    email: String!
+    password: String!
+  }
+
+  type Mutation {
+    register(input: RegisterInput!): OutputRegister
+    login(input: LoginInput!): AuthPayload
+    deleteUser(id: ID!, role: String!): OutputRegister
   }
 `;
 

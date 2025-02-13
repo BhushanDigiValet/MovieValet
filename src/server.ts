@@ -7,12 +7,19 @@ import http from "http";
 import cors from "cors";
 import typeDefs from "./schema/typeDefs";
 import resolvers from "./schema/resolvers";
-import logger from "./utils/loggers";
-import { getUserFromToken } from "./utils/auth";
+import { getUserFromToken } from "./Auth/auth";
+
 
 interface MyContext {
-  token?: string;
+  user?: {
+    id: string;
+    username: string;
+    role: string;
+  };
+  req: express.Request;
 }
+
+
 
 const createServer = async () => {
   const app = express();
@@ -31,12 +38,14 @@ const createServer = async () => {
     cors<cors.CorsRequest>(),
     express.json(),
     expressMiddleware(server, {
-      context: async ({ req }) => {
-        // Expecting the header "Authorization: Bearer <token>"
-        const authHeader = req.headers.authorization || "";
-        const token = authHeader.split(" ")[1];
-        const user = token ? getUserFromToken(token) : null;
-        return { user };
+      context: async ({ req }): Promise<MyContext> => {
+        const token = req.headers.authorization;
+
+        
+
+        const user = token ? await getUserFromToken(token) : null;
+
+        return { user, req };
       },
     })
   );

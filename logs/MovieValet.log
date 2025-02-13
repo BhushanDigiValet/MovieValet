@@ -47,3 +47,169 @@
 2025-02-13T09:07:41.815 [INFO] unknown:unknown - This is an informational message.
 2025-02-13T09:07:42.870 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
 2025-02-13T09:07:42.923 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T12:18:44.740 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T12:18:45.189 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T12:18:45.227 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T13:05:11.713 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T13:05:12.539 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T13:05:12.570 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T13:32:39.198 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T13:32:40.040 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T13:32:40.071 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T14:41:19.723 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T14:41:20.265 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T14:41:20.297 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:04:47.992 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:04:48.504 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T15:04:48.532 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:12:20.692 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:12:21.315 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T15:12:21.346 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:13:31.518 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:13:32.251 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T15:13:32.284 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:14:41.178 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:14:41.950 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T15:14:41.980 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:21:02.152 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:21:02.813 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T15:21:02.845 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:22:47.192 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:22:47.778 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T15:22:47.813 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:23:11.915 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:23:12.319 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T15:23:12.349 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:24:37.033 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:24:37.761 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T15:24:37.793 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:26:08.034 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:26:08.694 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T15:26:08.726 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:28:01.495 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:28:02.146 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T15:28:02.178 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:33:51.529 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:33:57.242 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T15:33:57.273 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:34:36.981 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:34:37.396 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T15:34:37.428 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:35:48.742 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:35:49.254 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T15:35:49.283 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:36:02.645 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:36:03.076 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T15:36:03.110 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:47:26.244 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:47:26.973 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T15:47:26.996 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:49:15.690 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:49:17.503 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T15:49:17.536 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:50:15.403 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:50:17.328 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T15:50:17.351 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:51:11.404 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:51:13.706 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T15:51:13.750 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:51:57.509 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:51:57.900 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T15:51:57.933 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:52:37.041 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:52:37.568 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T15:52:37.599 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T15:55:28.327 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T15:55:29.161 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T15:55:29.194 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T16:37:46.466 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T16:37:47.792 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T16:37:47.814 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T16:45:30.577 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T16:45:32.176 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T16:45:32.199 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T16:47:40.753 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T16:47:43.603 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T16:47:43.636 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T16:49:38.211 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T16:49:40.484 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T16:49:40.514 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T16:55:05.872 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T16:55:06.537 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T16:55:06.568 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T17:11:12.215 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T17:11:12.733 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T17:11:12.765 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T17:46:13.434 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T17:46:15.886 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T17:46:15.902 [ERROR] unknown:unknown - Error starting server: Error: Unknown type "role".
+    at assertValidSDL (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/validation/validate.js:135:11)
+    at buildASTSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/utilities/buildASTSchema.js:44:34)
+    at makeExecutableSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:73:47)
+    at ApolloServer.constructSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:332:50)
+    at new ApolloServer (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:97:49)
+    at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:20:20)
+    at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-13T17:47:32.890 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T17:47:33.764 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T17:47:33.795 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T17:51:55.273 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T17:51:57.730 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T17:51:57.767 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:00:23.395 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:00:24.182 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T18:00:24.213 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:07:15.045 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:07:17.486 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T18:07:17.518 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:09:09.215 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:09:09.824 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T18:09:09.835 [ERROR] unknown:unknown - Error starting server: GraphQLError: Syntax Error: Expected ":", found Name "login".
+    at syntaxError (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/error/syntaxError.js:15:10)
+    at Parser.expectToken (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:1406:40)
+    at Parser.parseFieldDefinition (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:847:10)
+    at Parser.optionalMany (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:1501:28)
+    at Parser.parseFieldsDefinition (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:831:17)
+    at Parser.parseObjectTypeDefinition (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:803:25)
+    at Parser.parseDefinition (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:181:23)
+    at Parser.many (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:1520:26)
+    at Parser.parseDocument (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:131:25)
+    at parse (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:32:27) {
+  path: undefined,
+  locations: [ { line: 52, column: 5 } ],
+  extensions: [Object: null prototype] {}
+}
+2025-02-13T18:09:47.257 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:09:47.715 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T18:09:47.747 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:10:56.032 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:10:56.599 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T18:10:56.636 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:13:00.657 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:13:01.412 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T18:13:01.448 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:14:32.598 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:14:33.241 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T18:14:33.272 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:18:23.379 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:18:23.923 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T18:18:23.963 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:21:28.630 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:21:29.205 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T18:21:29.238 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:22:17.300 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:22:17.908 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T18:22:17.945 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:29:32.765 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:29:33.432 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T18:29:33.467 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:32:37.753 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:32:38.354 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T18:32:38.397 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:34:25.952 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:34:26.532 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T18:34:26.571 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T18:49:41.063 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T18:49:42.021 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T18:49:42.053 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/

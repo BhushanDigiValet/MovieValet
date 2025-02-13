@@ -1,0 +1,49 @@
+2025-02-12T22:46:22.463 [INFO] unknown:unknown - This is an informational message.
+2025-02-12T22:46:24.178 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-12T22:46:24.307 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T08:40:07.542 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T08:40:08.530 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T08:40:08.540 [ERROR] unknown:unknown - Error starting server: Error: Field "Query.user" can only be defined once.
+    at assertValidSDL (E:\workspace\DigiValet\New folder\MovieValet\node_modules\graphql\validation\validate.js:135:11)
+    at buildASTSchema (E:\workspace\DigiValet\New folder\MovieValet\node_modules\graphql\utilities\buildASTSchema.js:44:34)
+    at makeExecutableSchema (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@graphql-tools\schema\cjs\makeExecutableSchema.js:73:47)
+    at ApolloServer.constructSchema (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@apollo\server\dist\cjs\ApolloServer.js:332:50)
+    at new ApolloServer (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@apollo\server\dist\cjs\ApolloServer.js:97:49)
+    at createServer (E:\workspace\DigiValet\New folder\MovieValet\dist\server.js:19:20)
+    at startServer (E:\workspace\DigiValet\New folder\MovieValet\dist\index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-13T08:43:41.422 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T08:43:42.361 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T08:43:42.375 [ERROR] unknown:unknown - Error starting server: Error: "Mutations" defined in resolvers, but not in schema
+    at addResolversToSchema (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@graphql-tools\schema\cjs\addResolversToSchema.js:24:19)
+    at makeExecutableSchema (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@graphql-tools\schema\cjs\makeExecutableSchema.js:76:65)
+    at ApolloServer.constructSchema (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@apollo\server\dist\cjs\ApolloServer.js:332:50)
+    at new ApolloServer (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@apollo\server\dist\cjs\ApolloServer.js:97:49)
+    at createServer (E:\workspace\DigiValet\New folder\MovieValet\dist\server.js:19:20)
+    at startServer (E:\workspace\DigiValet\New folder\MovieValet\dist\index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-13T08:45:20.401 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T08:45:21.443 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T08:45:21.456 [ERROR] unknown:unknown - Error starting server: Error: "Mutations" defined in resolvers, but not in schema
+    at addResolversToSchema (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@graphql-tools\schema\cjs\addResolversToSchema.js:24:19)
+    at makeExecutableSchema (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@graphql-tools\schema\cjs\makeExecutableSchema.js:76:65)
+    at ApolloServer.constructSchema (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@apollo\server\dist\cjs\ApolloServer.js:332:50)
+    at new ApolloServer (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@apollo\server\dist\cjs\ApolloServer.js:97:49)
+    at createServer (E:\workspace\DigiValet\New folder\MovieValet\dist\server.js:19:20)
+    at startServer (E:\workspace\DigiValet\New folder\MovieValet\dist\index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-13T08:48:12.354 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T08:48:13.173 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-13T08:48:13.642 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T08:57:52.516 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T08:57:54.143 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T08:57:54.194 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T09:00:29.806 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T09:00:30.624 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T09:00:30.676 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T09:05:14.507 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T09:05:15.514 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-13T09:05:15.567 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-13T09:07:41.815 [INFO] unknown:unknown - This is an informational message.
+2025-02-13T09:07:42.870 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-13T09:07:42.923 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/

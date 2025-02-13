@@ -8,6 +8,7 @@ import cors from "cors";
 import typeDefs from "./schema/typeDefs";
 import resolvers from "./schema/resolvers";
 import logger from "./utils/loggers";
+import { getUserFromToken } from "./utils/auth";
 
 interface MyContext {
   token?: string;
@@ -30,7 +31,13 @@ const createServer = async () => {
     cors<cors.CorsRequest>(),
     express.json(),
     expressMiddleware(server, {
-      context: async ({ req }) => ({ token: req.headers.token }),
+      context: async ({ req }) => {
+        // Expecting the header "Authorization: Bearer <token>"
+        const authHeader = req.headers.authorization || "";
+        const token = authHeader.split(" ")[1];
+        const user = token ? getUserFromToken(token) : null;
+        return { user };
+      },
     })
   );
 

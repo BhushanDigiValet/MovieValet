@@ -4,7 +4,6 @@ import { ILocation } from "../types/defaultValue";
 export interface ITheater extends Document {
   name: string;
   location: ILocation;
-  totalSeats: number;
   adminId: Types.ObjectId; // Use Types.ObjectId
   isDeleted: boolean;
   createdBy?: Types.ObjectId; // Use Types.ObjectId
@@ -41,10 +40,6 @@ const TheaterSchema = new Schema<ITheater>({
     type: LocationSchema,
     required: true,
   }, 
-  totalSeats: {
-    type: Number,
-    required: true,
-  },
   adminId: {
     type: Schema.Types.ObjectId,
     ref: "User",

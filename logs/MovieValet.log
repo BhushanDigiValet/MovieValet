@@ -213,3 +213,244 @@
 2025-02-13T18:49:41.063 [INFO] unknown:unknown - This is an informational message.
 2025-02-13T18:49:42.021 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
 2025-02-13T18:49:42.053 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-14T12:07:37.190 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:07:39.769 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T12:07:39.794 [ERROR] unknown:unknown - Error starting server: Error: Query.theaters defined in resolvers, but not in schema
+    at addResolversToSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/addResolversToSchema.js:65:35)
+    at makeExecutableSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:76:65)
+    at ApolloServer.constructSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:332:50)
+    at new ApolloServer (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:97:49)
+    at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:18:20)
+    at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-14T12:11:58.925 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:12:01.051 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T12:12:01.061 [ERROR] unknown:unknown - Error starting server: GraphQLError: Syntax Error: Expected Name, found "}".
+    at syntaxError (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/error/syntaxError.js:15:10)
+    at Parser.expectToken (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:1406:40)
+    at Parser.parseName (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:117:24)
+    at Parser.parseFieldDefinition (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:845:23)
+    at Parser.optionalMany (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:1501:28)
+    at Parser.parseFieldsDefinition (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:831:17)
+    at Parser.parseObjectTypeDefinition (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:803:25)
+    at Parser.parseDefinition (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:181:23)
+    at Parser.many (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:1520:26)
+    at Parser.parseDocument (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/language/parser.js:131:25) {
+  path: undefined,
+  locations: [ { line: 35, column: 3 } ],
+  extensions: [Object: null prototype] {}
+}
+2025-02-14T12:13:20.573 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:13:21.505 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T12:13:21.523 [ERROR] unknown:unknown - Error starting server: Error: Query.theaters defined in resolvers, but not in schema
+    at addResolversToSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/addResolversToSchema.js:65:35)
+    at makeExecutableSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:76:65)
+    at ApolloServer.constructSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:332:50)
+    at new ApolloServer (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:97:49)
+    at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:18:20)
+    at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-14T12:14:16.305 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:14:16.956 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T12:14:16.978 [ERROR] unknown:unknown - Error starting server: Error: Query.theaters defined in resolvers, but not in schema
+    at addResolversToSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/addResolversToSchema.js:65:35)
+    at makeExecutableSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:76:65)
+    at ApolloServer.constructSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:332:50)
+    at new ApolloServer (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:97:49)
+    at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:18:20)
+    at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-14T12:15:42.738 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:15:43.808 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T12:15:43.854 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-14T12:20:41.847 [ERROR] unknown:unknown - Unauthorized: Please log in
+2025-02-14T12:23:50.234 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:23:50.858 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T12:23:50.905 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4000/
+2025-02-14T12:32:27.394 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:32:33.628 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T12:36:48.275 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:36:48.831 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T12:37:06.869 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:37:07.222 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T12:37:15.704 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:37:16.235 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T12:37:16.272 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T12:44:28.894 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:44:29.524 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T12:44:29.562 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T12:45:42.803 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:45:43.374 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T12:45:43.411 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T12:54:04.104 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:54:10.096 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T12:54:10.169 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T12:55:49.969 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:55:50.926 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T12:55:50.951 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T12:56:41.460 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:56:41.816 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T12:56:41.854 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T12:59:38.713 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T12:59:39.473 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T12:59:39.511 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T13:05:57.627 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T13:05:58.478 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T13:05:58.513 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T13:09:09.767 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T13:09:10.556 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T13:09:10.592 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T13:12:58.111 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T13:12:59.122 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T13:12:59.155 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T13:13:43.724 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T13:13:48.243 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T13:13:48.280 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T13:14:53.763 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T13:14:56.763 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T13:14:56.797 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T13:23:08.948 [ERROR] unknown:unknown - Access Denied: CUSTOMER cannot perform this action
+2025-02-14T14:40:44.170 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T14:40:45.053 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T14:40:45.091 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T14:42:22.004 [ERROR] unknown:unknown - Unauthorized: Please log in
+2025-02-14T15:08:13.906 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T15:08:14.664 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T15:08:14.702 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T15:09:48.583 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T15:09:49.424 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T15:09:49.464 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T15:12:02.956 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T15:12:03.653 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T15:12:03.684 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T15:58:55.296 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T15:58:55.969 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T15:58:56.006 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T16:00:27.919 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T16:00:28.636 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T16:00:28.675 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T16:36:32.979 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T16:36:33.943 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T16:36:33.979 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T16:57:35.054 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T16:57:35.866 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T16:57:35.904 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T17:03:13.144 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T17:03:13.816 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T17:03:13.850 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T17:05:27.685 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T17:05:28.343 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T17:05:28.370 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T17:06:14.384 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T17:06:14.862 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T17:06:14.900 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T17:07:21.040 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T17:07:21.636 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T17:07:21.669 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T17:08:13.549 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T17:08:14.179 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T17:08:14.215 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T17:12:51.485 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T17:12:52.400 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T17:12:52.436 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T17:26:23.132 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T17:26:23.917 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T17:26:23.942 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T17:29:53.662 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T17:29:54.371 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T17:29:54.401 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T17:49:33.345 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T17:49:34.037 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T17:49:34.073 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T18:43:57.821 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T18:43:58.438 [INFO] unknown:unknown - MongoDB Connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T18:43:58.458 [ERROR] unknown:unknown - Error starting server: Error: Unknown type "Genre".
+    at assertValidSDL (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/validation/validate.js:135:11)
+    at buildASTSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/utilities/buildASTSchema.js:44:34)
+    at makeExecutableSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:73:47)
+    at ApolloServer.constructSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:332:50)
+    at new ApolloServer (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:97:49)
+    at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:18:20)
+    at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-14T18:59:37.619 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T18:59:38.644 [INFO] unknown:unknown - Database connected 
+2025-02-14T18:59:38.667 [ERROR] unknown:unknown - Error starting server: Error: Unknown type "Genre".
+    at assertValidSDL (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/validation/validate.js:135:11)
+    at buildASTSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/utilities/buildASTSchema.js:44:34)
+    at makeExecutableSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:73:47)
+    at ApolloServer.constructSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:332:50)
+    at new ApolloServer (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:97:49)
+    at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:18:20)
+    at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-14T19:03:16.468 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:03:17.741 [INFO] unknown:unknown - Database connected 
+2025-02-14T19:03:17.784 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T19:04:47.917 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:04:48.571 [INFO] unknown:unknown - Database connected 
+2025-02-14T19:04:48.605 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T19:05:31.000 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:05:31.905 [INFO] unknown:unknown - Database connected 
+2025-02-14T19:05:31.943 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T19:07:31.571 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:11:41.088 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:11:41.742 [INFO] unknown:unknown - ✅ Database connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T19:11:42.244 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4001/
+2025-02-14T19:12:22.992 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:12:23.490 [INFO] unknown:unknown - ✅ Database connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T19:12:44.851 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:12:45.433 [INFO] unknown:unknown - ✅ Database connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T19:14:45.226 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:14:45.927 [INFO] unknown:unknown - ✅ Database connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T19:14:46.167 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-14T19:19:08.273 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:19:08.914 [INFO] unknown:unknown - Database connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-14T19:19:08.934 [ERROR] unknown:unknown - Error starting server: Error: Unknown type "Genre".
+    at assertValidSDL (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/validation/validate.js:135:11)
+    at buildASTSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/utilities/buildASTSchema.js:44:34)
+    at makeExecutableSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:73:47)
+    at ApolloServer.constructSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:332:50)
+    at new ApolloServer (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:97:49)
+    at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:18:20)
+    at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-14T19:19:21.620 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:19:22.100 [INFO] unknown:unknown - Database connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T19:19:22.121 [ERROR] unknown:unknown - Error starting server: Error: Unknown type "Genres".
+    at assertValidSDL (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/validation/validate.js:135:11)
+    at buildASTSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/utilities/buildASTSchema.js:44:34)
+    at makeExecutableSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:73:47)
+    at ApolloServer.constructSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:332:50)
+    at new ApolloServer (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:97:49)
+    at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:18:20)
+    at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-14T19:20:15.498 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:20:16.173 [INFO] unknown:unknown - Database connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-14T19:20:16.194 [ERROR] unknown:unknown - Error starting server: Error: Unknown type "Genre".
+
+Unknown type "Genre".
+
+Unknown type "Genre".
+    at assertValidSDL (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/validation/validate.js:135:11)
+    at buildASTSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/utilities/buildASTSchema.js:44:34)
+    at makeExecutableSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:73:47)
+    at ApolloServer.constructSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:332:50)
+    at new ApolloServer (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:97:49)
+    at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:18:20)
+    at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-14T19:28:36.521 [INFO] unknown:unknown - This is an informational message.
+2025-02-14T19:28:37.110 [INFO] unknown:unknown - Database connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-14T19:28:37.138 [ERROR] unknown:unknown - Error starting server: Error: The type of CreateMovieInput.genre must be Input Type but got: Genre.
+
+The type of UpdateMovieInput.genre must be Input Type but got: Genre.
+    at assertValidSchema (/home/bhushanshinde/workspace/MovieValet/node_modules/graphql/type/validate.js:59:11)
+    at ApolloServer.generateSchemaDerivedData (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:338:41)
+    at Object.schemaDerivedDataProvider (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:98:77)
+    at new SchemaManager (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/utils/schemaManager.js:21:44)
+    at new ApolloServer (/home/bhushanshinde/workspace/MovieValet/node_modules/@apollo/server/dist/cjs/ApolloServer.js:96:36)
+    at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:18:20)
+    at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

@@ -1,9 +1,8 @@
-import { User } from "../models";
+import { User } from "../../models";
 import { IResolvers } from "@graphql-tools/utils";
-import { login } from "../services/login";
-import { register } from "../services/register";
-import { deleteUser } from "../services/deleteUser";
-
+import { login } from "../../services/login";
+import { register } from "../../services/register";
+import { deleteUser } from "../../services/deleteUser";
 
 const resolvers = {
   Query: {

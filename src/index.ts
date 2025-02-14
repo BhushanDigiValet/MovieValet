@@ -8,7 +8,7 @@ const startServer = async () => {
   try {
     await connectDB();
     const httpServer = await createServer();
-    const PORT = process.env.PORT || 4000;
+    const PORT = process.env.PORT || 4001;
     httpServer.listen(PORT, () => {
       logger.info(`🚀 Server ready at http://localhost:${PORT}/`);
     });

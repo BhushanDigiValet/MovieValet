@@ -5,10 +5,8 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import express from "express";
 import http from "http";
 import cors from "cors";
-import typeDefs from "./schema/typeDefs";
-import resolvers from "./schema/resolvers";
+import { typeDefs, resolvers } from "./graphql";
 import { getUserFromToken } from "./Auth/auth";
-
 
 interface MyContext {
   user?: {
@@ -18,8 +16,6 @@ interface MyContext {
   };
   req: express.Request;
 }
-
-
 
 const createServer = async () => {
   const app = express();
@@ -41,9 +37,8 @@ const createServer = async () => {
       context: async ({ req }): Promise<MyContext> => {
         const token = req.headers.authorization;
 
-        
-
         const user = token ? await getUserFromToken(token) : null;
+  
 
         return { user, req };
       },

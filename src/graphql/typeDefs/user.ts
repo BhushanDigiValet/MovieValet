@@ -1,4 +1,4 @@
-const typeDefs = `#graphql
+const userDefs = `#graphql
   enum UserRole {
     ADMIN
     THEATER_ADMIN
@@ -54,4 +54,4 @@ input LoginInput {
   }
 `;
 
-export default typeDefs;
+export default userDefs;

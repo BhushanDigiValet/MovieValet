@@ -1,17 +1,20 @@
 import { Schema, model, Document, Types } from "mongoose";
-import { Genre, IStarCast } from "../types/defaultValue";
+import {  IStarCast } from "../types/defaultValue";
+import { seedGenres } from "./Genre";
 
 export interface IMovie extends Document {
   title: string;
   description: string;
-  genre: Genre;
+  genre: Types.ObjectId;
   imdbRating: number;
   starCast: IStarCast[];
+  language: string[];
+  posterUrl: string;
   durationMinutes: number;
   releaseDate: Date;
   isDeleted: boolean;
-  createdBy?: Types.ObjectId; 
-  updatedBy?: Types.ObjectId; 
+  createdBy?: Types.ObjectId;
+  updatedBy?: Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -37,12 +40,20 @@ const MovieSchema = new Schema<IMovie>({
     type: String,
   },
   genre: {
-    type: String,
-    enum: Object.values(Genre),
+    type: Schema.Types.ObjectId,
+    ref: "Genre",
     required: true,
   },
   imdbRating: {
     type: Number,
+  },
+  language: {
+    type: [String],
+    default: [],  
+  },
+  posterUrl: {
+    type: String,
+    required : true,
   },
   starCast: {
     type: [StarCastSchema],

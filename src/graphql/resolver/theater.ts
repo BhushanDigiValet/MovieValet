@@ -101,6 +101,31 @@ const theaterResolver = {
 
       return await existingTheater.save();
     },
+
+    updateTheater: async (_, { id, input }, context) => {
+      restrictRole(context, [UserRole.CUSTOMER]);
+
+      const existingTheater = await Theater.findById(id);
+      if (!existingTheater) {
+        throw new GraphQLError("Theater not found");
+      }
+
+      if (context.user.role === UserRole.THEATER_ADMIN) {
+        if (!existingTheater.adminId.equals(context.user.id)) {
+          throw new GraphQLError("You can only update the theater you manage");
+        }
+      }
+      const updatedTheater = existingTheater.set({
+        ...input,
+        updatedBy: context.user.id,
+        updatedAt: new Date(),
+      });
+      return (await updatedTheater.save()).populate([
+        "adminId",
+        "createdBy",
+        "updatedBy",
+      ]);
+    },
   },
 };
 

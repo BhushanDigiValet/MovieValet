@@ -31,6 +31,13 @@ const theaterTypeDefs = `#graphql
     location: LocationInput!
     adminId: ID!
   }
+  input UpdateTheaterInput {
+    name: String
+    location: LocationInput
+    adminId: ID
+   
+
+  }
 
   type Query {
     theaters: [Theater!]!
@@ -40,6 +47,7 @@ const theaterTypeDefs = `#graphql
   type Mutation {
     createTheater(input: TheaterInput!): Theater!
     deleteTheater(id: ID!): Theater!
+    updateTheater(id: ID!, input: UpdateTheaterInput!): Theater!
   }
 `;
 

@@ -38,29 +38,3 @@ export const restrictRole = (
     );
   }
 };
-
-// export const noCustomer = (context: any): void => {
-//   if (!context.user) {
-//     throw new GraphQLError("Login", {
-//       extensions: { code: "UNAUTHORIZED" },
-//     });
-//   }
-//   if (context.user.role === UserRole.CUSTOMER) {
-//     throw new GraphQLError("Unauthorized for Customer", {
-//       extensions: { code: "UNAUTHORIZED" },
-//     });
-//   }
-// };
-
-// export const noTHEATER_ADMIN = (context: any): void => {
-//   if (!context.user) {
-//     throw new GraphQLError("Unauthorized for Customer", {
-//       extensions: { code: "UNAUTHORIZED" },
-//     });
-//   }
-//   if (context.user.role === UserRole.THEATER_ADMIN) {
-//     throw new GraphQLError("Unauthorized for Customer", {
-//       extensions: { code: "UNAUTHORIZED" },
-//     });
-//   }
-// };

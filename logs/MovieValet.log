@@ -470,3 +470,22 @@ The type of UpdateMovieInput.genre must be Input Type but got: Genre.
 2025-02-15T07:26:01.371 [INFO] unknown:unknown - This is an informational message.
 2025-02-15T07:26:03.013 [INFO] unknown:unknown - Database connected: cluster0-shard-00-00.f0sk5.mongodb.net
 2025-02-15T07:26:03.535 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-15T10:00:20.595 [INFO] unknown:unknown - This is an informational message.
+2025-02-15T10:00:21.497 [INFO] unknown:unknown - Database connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-15T10:00:21.544 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-15T10:55:38.996 [INFO] unknown:unknown - This is an informational message.
+2025-02-15T10:55:39.686 [INFO] unknown:unknown - Database connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-15T10:55:39.729 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-15T12:43:25.360 [INFO] unknown:unknown - This is an informational message.
+2025-02-15T12:43:26.044 [INFO] unknown:unknown - Database connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-15T12:43:26.081 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-15T12:49:12.963 [INFO] unknown:unknown - This is an informational message.
+2025-02-15T12:49:13.673 [INFO] unknown:unknown - Database connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-15T12:49:13.708 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-15T13:09:07.672 [INFO] unknown:unknown - This is an informational message.
+2025-02-15T13:09:08.345 [INFO] unknown:unknown - Database connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-15T13:09:08.383 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-15T13:55:13.799 [INFO] unknown:unknown - This is an informational message.
+2025-02-15T13:55:14.575 [INFO] unknown:unknown - Database connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-15T13:55:14.615 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-15T13:56:38.759 [ERROR] unknown:unknown - Unauthorized: Please log in

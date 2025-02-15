@@ -17,6 +17,7 @@ const resolvers = {
     register: register,
     login: login,
     deleteUser: deleteUser,
+    
   },
 };
 

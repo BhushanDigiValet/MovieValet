@@ -51,6 +51,7 @@ input LoginInput {
     register(input: RegisterInput!): OutputRegister
     login(input: LoginInput!): AuthPayload
     deleteUser(id: ID!, role: String!): OutputRegister
+    updateUser(id: ID!, input: UpdateUserInput!): OutputRegister
   }
 `;
 

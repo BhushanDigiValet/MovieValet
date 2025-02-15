@@ -14,7 +14,7 @@ type Movie {
   id: ID!
   title: String!
   description: String
-  genre: Genre
+  genre:  ID!
   imdbRating: Float
   language: [String!]!
   posterUrl: String!
@@ -36,7 +36,7 @@ input StarCastInput {
 input CreateMovieInput {
   title: String!
   description: String
-  genre: Genre
+  genre:  ID!
   imdbRating: Float
   language: [String!]!
   posterUrl: String!
@@ -48,7 +48,7 @@ input CreateMovieInput {
 input UpdateMovieInput {
   title: String
   description: String
-  genre: Genre
+  genre:  ID!
   imdbRating: Float
   language: [String!]
   posterUrl: String

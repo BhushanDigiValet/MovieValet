@@ -454,3 +454,19 @@ The type of UpdateMovieInput.genre must be Input Type but got: Genre.
     at createServer (/home/bhushanshinde/workspace/MovieValet/dist/server.js:18:20)
     at startServer (/home/bhushanshinde/workspace/MovieValet/dist/index.js:14:55)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-15T07:24:30.361 [INFO] unknown:unknown - This is an informational message.
+2025-02-15T07:24:34.018 [INFO] unknown:unknown - Database connected: cluster0-shard-00-01.f0sk5.mongodb.net
+2025-02-15T07:24:34.166 [ERROR] unknown:unknown - Error starting server: Error: The type of CreateMovieInput.genre must be Input Type but got: Genre.
+
+The type of UpdateMovieInput.genre must be Input Type but got: Genre.
+    at assertValidSchema (E:\workspace\DigiValet\New folder\MovieValet\node_modules\graphql\type\validate.js:59:11)
+    at ApolloServer.generateSchemaDerivedData (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@apollo\server\dist\cjs\ApolloServer.js:338:41)
+    at Object.schemaDerivedDataProvider (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@apollo\server\dist\cjs\ApolloServer.js:98:77)
+    at new SchemaManager (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@apollo\server\dist\cjs\utils\schemaManager.js:21:44)
+    at new ApolloServer (E:\workspace\DigiValet\New folder\MovieValet\node_modules\@apollo\server\dist\cjs\ApolloServer.js:96:36)
+    at createServer (E:\workspace\DigiValet\New folder\MovieValet\dist\server.js:18:20)
+    at startServer (E:\workspace\DigiValet\New folder\MovieValet\dist\index.js:14:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-02-15T07:26:01.371 [INFO] unknown:unknown - This is an informational message.
+2025-02-15T07:26:03.013 [INFO] unknown:unknown - Database connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-15T07:26:03.535 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/

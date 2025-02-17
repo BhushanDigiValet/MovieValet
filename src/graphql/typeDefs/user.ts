@@ -16,9 +16,12 @@ const userDefs = `#graphql
     createdAt: String!
     updatedAt: String
   }
+  input UserFilterInput {
+    role: UserRole
+  }
 
   type Query {
-    users: [User]
+    users(input: UserFilterInput): [User]
     user(id: ID!): User
   }
   input RegisterInput {

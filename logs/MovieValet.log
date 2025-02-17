@@ -489,3 +489,17 @@ The type of UpdateMovieInput.genre must be Input Type but got: Genre.
 2025-02-15T13:55:14.575 [INFO] unknown:unknown - Database connected: cluster0-shard-00-02.f0sk5.mongodb.net
 2025-02-15T13:55:14.615 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
 2025-02-15T13:56:38.759 [ERROR] unknown:unknown - Unauthorized: Please log in
+2025-02-16T21:20:42.429 [INFO] unknown:unknown - This is an informational message.
+2025-02-16T21:20:45.181 [INFO] unknown:unknown - Database connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-16T21:20:45.614 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-16T21:36:38.944 [INFO] unknown:unknown - This is an informational message.
+2025-02-16T21:36:48.882 [INFO] unknown:unknown - Database connected: cluster0-shard-00-00.f0sk5.mongodb.net
+2025-02-16T21:36:49.074 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-16T22:55:15.629 [INFO] unknown:unknown - This is an informational message.
+2025-02-16T22:55:38.069 [ERROR] unknown:unknown -  Database Connection Error: connect ETIMEDOUT 159.41.177.61:27017
+2025-02-16T22:55:38.210 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-16T22:59:33.319 [INFO] unknown:unknown - This is an informational message.
+2025-02-16T22:59:36.882 [INFO] unknown:unknown - Database connected: cluster0-shard-00-02.f0sk5.mongodb.net
+2025-02-16T22:59:37.204 [INFO] unknown:unknown - 🚀 Server ready at http://localhost:4002/
+2025-02-16T23:02:30.413 [ERROR] unknown:unknown - Unauthorized: Please log in
+2025-02-16T23:02:52.988 [ERROR] unknown:unknown - Unauthorized: Please log in

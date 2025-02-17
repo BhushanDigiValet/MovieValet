@@ -56,9 +56,14 @@ input UpdateMovieInput {
   durationMinutes: Int
   releaseDate: String
 }
+input MovieFilterInput {
+  title: String
+  genre: ID
+  imdbRating: Float
+}
 
 type Query {
-  movies: [Movie!]!
+  movies(input: MovieFilterInput): [Movie!]!
   movie(id: ID!): Movie
 }
 

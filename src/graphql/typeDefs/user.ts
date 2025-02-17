@@ -20,40 +20,45 @@ const userDefs = `#graphql
     role: UserRole
   }
 
-  type Query {
-    users(input: UserFilterInput): [User]
-    user(id: ID!): User
-  }
   input RegisterInput {
     username: String!
     email: String!
     password: String!
     role: UserRole!
 }
-type AuthPayload {
+
+  type AuthPayload {
     token: String
     message: String
   }
-type OutputRegister {
+  
+  type OutputRegister {
     username: String
     email: String
-    role:String
+    role:UserRole
     message: String
   }
-input UpdateUserInput {
+  
+  input UpdateUserInput {
     username: String
     email: String
     role: UserRole
 }
+
 input LoginInput {
     email: String!
     password: String!
+  }
+  
+  type Query {
+    users(input: UserFilterInput): [User]
+    user(id: ID!): User
   }
 
   type Mutation {
     register(input: RegisterInput!): OutputRegister
     login(input: LoginInput!): AuthPayload
-    deleteUser(id: ID!, role: String!): OutputRegister
+    deleteUser(id: ID!): OutputRegister
     updateUser(id: ID!, input: UpdateUserInput!): OutputRegister
   }
 `;

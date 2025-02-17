@@ -48,11 +48,11 @@ input CreateMovieInput {
 input UpdateMovieInput {
   title: String
   description: String
-  genre:  ID!
+  genre:  ID
   imdbRating: Float
-  language: [String!]
+  language: [String]
   posterUrl: String
-  starCast: [StarCastInput!]
+  starCast: [StarCastInput]
   durationMinutes: Int
   releaseDate: String
 }
@@ -70,7 +70,7 @@ type Query {
 type Mutation {
   createMovie(input: CreateMovieInput!): Movie!
   updateMovie(id: ID!, input: UpdateMovieInput!): Movie!
-  deleteMovie(id: ID!): Boolean!
+  deleteMovie(id: ID!): Movie!
 }
 
 `;

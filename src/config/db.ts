@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import logger from "../utils/loggers";
-
+import { seedCity } from "../models/City";
 
 dotenv.config();
 
@@ -19,9 +19,16 @@ const connectDB = async () => {
     // if (process.env.NODE_ENV !== "production") {
     //   await seedGenres();
     // }
+
+    // Seed City only in development mode
+    // if (process.env.NODE_ENV !== "production") {
+    //   await seedCity();
+    //   logger.info("Cities seeded successfully!");
+    // } else {
+    //   logger.info("Can not seeded! Cities ");
+    // }
   } catch (error) {
     logger.error(` Database Connection Error: ${(error as Error).message}`);
-    // Instead of process.exit(1), handle retry logic or exit gracefully
   }
 };
 

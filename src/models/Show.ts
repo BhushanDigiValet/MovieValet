@@ -8,6 +8,7 @@ export interface IShow extends Document {
   updatedBy?: Types.ObjectId;
   createdAT: Date;
   updatedAt: Date;
+  isDeleted: boolean;
 }
 
 const ShowSchema = new Schema<IShow>({
@@ -40,6 +41,10 @@ const ShowSchema = new Schema<IShow>({
   updatedAt: {
     type: Date,
     default: Date.now,
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
   },
 });
 

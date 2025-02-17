@@ -1,6 +1,5 @@
 import { Schema, model, Document, Types } from "mongoose";
-import {  IStarCast } from "../types/defaultValue";
-import { seedGenres } from "./Genre";
+import { IStarCast } from "../types/defaultValue";
 
 export interface IMovie extends Document {
   title: string;
@@ -30,7 +29,6 @@ const StarCastSchema = new Schema<IStarCast>({
   },
 });
 
-
 const MovieSchema = new Schema<IMovie>({
   title: {
     type: String,
@@ -49,11 +47,11 @@ const MovieSchema = new Schema<IMovie>({
   },
   language: {
     type: [String],
-    default: [],  
+    default: [],
   },
   posterUrl: {
     type: String,
-    required : true,
+    required: true,
   },
   starCast: {
     type: [StarCastSchema],

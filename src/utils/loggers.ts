@@ -6,7 +6,7 @@ log4js.configure({
   appenders: {
     fileAppender: {
       type: "file",
-      filename: "logs/MovieValet.log",
+      filename: "../logs/MovieValet.log",
       layout: {
         type: "pattern",
         pattern: "%d [%p] %x{file}:%x{line} - %m",

@@ -2,10 +2,11 @@ import { GraphQLError } from "graphql";
 import { Movie, Show, Theater } from "../models";
 import { UserRole } from "../types/defaultValue";
 import { restrictRole } from "../Auth/authorization";
-import { ShowInput } from "../types/show.type";
+import { ShowInput, UpdateInput } from "../types/show.type";
 import logger from "../utils/loggers";
 
 export class ShowResolver {
+  
   static shows = async (parent, args, context) => {
     restrictRole(context, []);
 
@@ -117,6 +118,26 @@ export class ShowResolver {
         throw new GraphQLError("Showtime must be in the future.");
       }
 
+      // Overlapping show check
+      const movie = await Movie.findById(movieId);
+      const showDuration = movie?.durationMinutes ?? 0;
+      const showStartTime = new Date(showTime);
+      const showEndTime = new Date(
+        showStartTime.getTime() + showDuration * 60000
+      ); // duration in milliseconds
+
+      const overlappingShow = await Show.findOne({
+        theaterId,
+        showTime: { $lt: showEndTime },
+        isDeleted: false,
+      });
+
+      if (overlappingShow) {
+        throw new GraphQLError(
+          "There is already a show scheduled in this theater during this time."
+        );
+      }
+
       const show = await Show.create({
         movieId,
         theaterId,
@@ -133,7 +154,7 @@ export class ShowResolver {
 
   static updateShow = async (
     _,
-    { id, input }: { id: string; input: Partial<ShowInput> },
+    { id, input }: { id: string; input: UpdateInput },
     context
   ) => {
     restrictRole(context, [UserRole.CUSTOMER]);

@@ -8,7 +8,7 @@ const showResolver = {
   Mutation: {
     createShow: ShowResolver.createShow,
     deleteShow: ShowResolver.deleteShow,
-    updateShow: ShowResolver.deleteShow,
+    updateShow: ShowResolver.updateShow,
   },
 };
 export default showResolver;

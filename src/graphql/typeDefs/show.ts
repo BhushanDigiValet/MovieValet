@@ -22,10 +22,9 @@ input CreateShowInput {
 }
 
 input UpdateShowInput {
-  movieId: ID!
-  theaterId: ID!
-  showTime: String!
-  updatedBy: ID
+  movieId: ID
+  theaterId: ID
+  showTime: String
 }
 
 # Define the Query type to fetch data

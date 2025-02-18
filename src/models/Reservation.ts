@@ -5,7 +5,7 @@ export interface IReservation extends Document {
   showId: Schema.Types.ObjectId;
   transactionId?: Schema.Types.ObjectId;
   reservationTime: Date;
-  //seats: any[];
+  seats: string[];
   qrTicket: string;
 }
 
@@ -28,10 +28,10 @@ const ReservationSchema = new Schema<IReservation>({
     type: Date,
     default: Date.now,
   },
-  //   seats: {
-  //     type: [Schema.Types.Mixed],
-  //     default: [],
-  //   },
+  seats: {
+    type: [String],
+    default: [],
+  },
   qrTicket: {
     type: String,
     required: true,

@@ -7,6 +7,7 @@ const showResolver = {
   },
   Mutation: {
     createShow: ShowResolver.createShow,
+    deleteShow: ShowResolver.deleteShow,
     // updateShow: async (parent: any, args: any, context: any) => {
     //   return context.dataSources.showAPI.updateShow(args.id, args.show);
     // },

@@ -5,8 +5,9 @@ export interface IReservation extends Document {
   showId: Schema.Types.ObjectId;
   transactionId?: Schema.Types.ObjectId;
   reservationTime: Date;
-  seats: string[];
+  seatNumber: string;
   qrTicket: string;
+  isDeleted: boolean;
 }
 
 const ReservationSchema = new Schema<IReservation>({
@@ -28,13 +29,17 @@ const ReservationSchema = new Schema<IReservation>({
     type: Date,
     default: Date.now,
   },
-  seats: {
-    type: [String],
-    default: [],
+  seatNumber: {
+    type: String,
+    required: true,
   },
   qrTicket: {
     type: String,
     required: true,
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
   },
 });
 

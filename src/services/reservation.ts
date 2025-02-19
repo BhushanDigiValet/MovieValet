@@ -1,61 +1,98 @@
 import { GraphQLError } from "graphql";
 import { restrictRole } from "../Auth/authorization";
 import { ReservationInput } from "../types/reservation.type";
-import { Reservation, Seat, Show } from "../models";
+import { Reservation, Show, Theater } from "../models";
 import { UserRole } from "../types/defaultValue";
 import QRCode from "qrcode";
+import logger from "../utils/loggers";
+import mongoose from "mongoose";
 
 export class ReservationService {
+  static async getReservations(
+    _,
+    { theaterId }: { theaterId: string },
+    context
+  ) {
+    const filter: Record<string, any> = { isDeleted: false };
+
+    try {
+      if (theaterId) {
+        filter.theaterId = theaterId;
+
+        if (context.user.role === UserRole.THEATER_ADMIN) {
+          const theaterExists = await Theater.findOne({
+            _id: theaterId,
+            adminId: context.user.id,
+          }).lean();
+
+          if (!theaterExists) {
+            logger.error(
+              `Unauthorized access or theater not found: ${theaterId}`,
+              { userId: context.user.id }
+            );
+            throw new GraphQLError(
+              "Theater not found or you are not the admin of this theater"
+            );
+          }
+        }
+      }
+
+      if (context.user.role === UserRole.CUSTOMER) {
+        filter.userId = context.user.id;
+      }
+      const reservations = await Reservation.find(filter);
+      return reservations;
+    } catch (error) {
+      logger.error("Get Reservation Error", { error, theaterId });
+      throw new GraphQLError("Failed to get reservation. Please try again.");
+    }
+  }
+
+  
+
   static async createReservation(
     _,
     { input }: { input: ReservationInput },
     context
   ) {
     restrictRole(context, [UserRole.THEATER_ADMIN]);
-    const { showId, seats, qrTicket } = input;
+
+    const { showId, seatNumber } = input;
     const userId = context.user.id;
 
     try {
-      const show = await Show.findById(showId);
+      const [show, reservedSeats] = await Promise.all([
+        Show.findById(showId),
+        Reservation.find({ showId, seatNumber: { $in: seatNumber } }),
+      ]);
+
       if (!show || show.isDeleted) {
+        logger.error(`Show not found or deleted: ${showId}`);
         throw new GraphQLError("Show not found");
       }
 
-      // Check if the seats are available
-      const availableSeats = await Seat.find({
-        theaterId: show.theaterId,
-        showId: showId,
-        seatNumber: { $in: seats },
-      });
-      if (availableSeats.length > 0) {
-        throw new GraphQLError("One or more seats are not available");
+      if (reservedSeats.length > 0) {
+        logger.error(`Seat already reserved: ${seatNumber}`);
+        throw new GraphQLError("Seat is already reserved");
       }
 
+      const reservationId = new mongoose.Types.ObjectId();
+
+      const qrTicket = await QRCode.toDataURL(`reservation:${reservationId}`);
+
       const reservation = await Reservation.create({
+        _id: reservationId,
         userId,
         showId,
-        seats,
+        seatNumber,
         qrTicket,
         reservationTime: new Date(),
       });
 
-      for (const seat of seats) {
-        await Seat.create({
-          theaterId: show.theaterId,
-          seatNumber: seat,
-          showId,
-          reservationId: reservation.id,
-        });
-      }
-      const qrCodeData = await QRCode.toDataURL(
-        `reservation:${reservation._id}`
-      );
-      reservation.qrTicket = qrCodeData;
-      await reservation.save();
-
       return reservation;
     } catch (error) {
-      throw new GraphQLError(`Error creating reservation: ${error.message}`);
+      console.error("Reservation Error:", error);
+      throw new GraphQLError("Failed to create reservation. Please try again.");
     }
   }
 }

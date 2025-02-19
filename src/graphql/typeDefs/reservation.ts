@@ -5,20 +5,20 @@ const reservationTypeDefs = `#graphql
   showId: ID!
   transactionId: ID
   reservationTime: String!
-  seats: [String]!
+  seatNumber: String!
   qrTicket: String!
+  isDeleted: Boolean!
 }
 
 
 input ReservationInput {
   showId: ID!
   transactionId: ID
-  seats: [String!]!
-  qrTicket: String!
+  seatNumber: String!
 }
 
 type Query {
-  getReservation(id: ID!): Reservation
+  getReservations(theaterId: ID): [Reservation]
   getReservationsByUser(userId: ID!): [Reservation]
 }
 

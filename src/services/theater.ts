@@ -6,7 +6,7 @@ import { User, Theater } from "../models";
 import logger from "../utils/loggers";
 import { CreateTheaterInput } from "../types/theater.type";
 
-export class TheaterResolver {
+export class TheaterService {
   static async theaters(_, args, context) {
     restrictRole(context, [UserRole.THEATER_ADMIN]);
 
@@ -69,10 +69,17 @@ export class TheaterResolver {
 
       const adminObjectId = new mongoose.Types.ObjectId(adminId);
 
-      const existingAdmin = await User.findOne({
-        _id: adminObjectId,
-        role: UserRole.THEATER_ADMIN,
-      });
+      const [existingAdmin, existingTheater, existingTheaterAdmin] =
+        await Promise.all([
+          User.findOne({
+            _id: adminObjectId,
+            role: UserRole.THEATER_ADMIN,
+          }).lean(),
+          Theater.exists({ name }),
+          Theater.exists({ adminId: adminObjectId }),
+        ]);
+
+      // Check if the admin ID is valid and is a THEATER_ADMIN
       if (!existingAdmin) {
         logger.warn(`Admin ID ${adminId} is invalid or not a THEATER_ADMIN`);
         throw new GraphQLError(
@@ -80,20 +87,16 @@ export class TheaterResolver {
         );
       }
 
-      // Check if the admin is already assigned to a theater
-      const existingTheaterAdmin = await Theater.findOne({
-        adminId: adminObjectId,
-      });
-      if (existingTheaterAdmin) {
-        logger.warn(`Admin ${adminId} is already assigned to a theater`);
-        throw new GraphQLError("This admin is already assigned to a theater");
-      }
-
       // Check if the theater name already exists
-      const existingTheater = await Theater.findOne({ name });
       if (existingTheater) {
         logger.warn(`Theater with name ${name} already exists`);
         throw new GraphQLError("Theater already exists");
+      }
+
+      // Check if the admin is already assigned to a theater
+      if (existingTheaterAdmin) {
+        logger.warn(`Admin ${adminId} is already assigned to a theater`);
+        throw new GraphQLError("This admin is already assigned to a theater");
       }
 
       const newTheater = new Theater({
@@ -123,15 +126,11 @@ export class TheaterResolver {
   static async deleteTheater(_, { id }: { id: string }, context) {
     restrictRole(context, [UserRole.CUSTOMER]);
 
-    const theaterObjectId = new mongoose.Types.ObjectId(id);
-    const userObjectId = new mongoose.Types.ObjectId(context.user.id);
-
     try {
       logger.info(
         `User ${context.user.id} is attempting to delete theater with ID ${id}`
       );
-
-      const existingTheater = await Theater.findOne({ _id: theaterObjectId });
+      const existingTheater = await Theater.findById(id).lean();
 
       if (!existingTheater) {
         logger.error(`Theater with ID ${id} does not exist`);
@@ -143,21 +142,28 @@ export class TheaterResolver {
         throw new GraphQLError("Theater is already deleted");
       }
 
-      if (context.user.role === UserRole.THEATER_ADMIN) {
-        if (!existingTheater.adminId.equals(userObjectId)) {
-          logger.warn(
-            `User ${context.user.id} is not authorized to delete theater ${id}`
-          );
-          throw new GraphQLError("You can only delete the theater you manage");
-        }
+      if (
+        context.user.role === UserRole.THEATER_ADMIN &&
+        !existingTheater.adminId.equals(context.user.id)
+      ) {
+        logger.warn(
+          `User ${context.user.id} is not authorized to delete theater ${id}`
+        );
+        throw new GraphQLError("You can only delete the theater you manage");
       }
 
-      existingTheater.isDeleted = true;
-      existingTheater.updatedBy = userObjectId;
-      existingTheater.updatedAt = new Date();
+      const updatedTheater = await Theater.findByIdAndUpdate(
+        id,
+        {
+          isDeleted: true,
+          updatedBy: context.user.id,
+          updatedAt: new Date(),
+        },
+        { new: true }
+      ).populate(["adminId", "createdBy", "updatedBy"]);
 
       logger.info(`Theater with ID ${id} deleted successfully`);
-      return await existingTheater.save();
+      return updatedTheater;
     } catch (error) {
       logger.error(`Error deleting theater with ID ${id}: ${error.message}`);
       throw new GraphQLError("Failed to delete theater");
@@ -172,33 +178,34 @@ export class TheaterResolver {
         `User ${context.user.id} is attempting to update theater with ID ${id}`
       );
 
-      const existingTheater = await Theater.findById(id);
+      const existingTheater = await Theater.findById(id).lean();
       if (!existingTheater) {
         logger.error(`Theater with ID ${id} not found`);
         throw new GraphQLError("Theater not found");
       }
 
-      if (context.user.role === UserRole.THEATER_ADMIN) {
-        if (!existingTheater.adminId.equals(context.user.id)) {
-          logger.warn(
-            `User ${context.user.id} is not authorized to update theater ${id}`
-          );
-          throw new GraphQLError("You can only update the theater you manage");
-        }
+      if (
+        context.user.role === UserRole.THEATER_ADMIN &&
+        !existingTheater.adminId.equals(context.user.id)
+      ) {
+        logger.warn(
+          `User ${context.user.id} is not authorized to update theater ${id}`
+        );
+        throw new GraphQLError("You can only update the theater you manage");
       }
 
-      const updatedTheater = existingTheater.set({
-        ...input,
-        updatedBy: context.user.id,
-        updatedAt: new Date(),
-      });
+      const updatedTheater = await Theater.findByIdAndUpdate(
+        id,
+        {
+          ...input,
+          updatedBy: context.user.id,
+          updatedAt: new Date(),
+        },
+        { new: true }
+      ).populate(["adminId", "createdBy", "updatedBy"]);
 
       logger.info(`Theater with ID ${id} updated successfully`);
-      return (await updatedTheater.save()).populate([
-        "adminId",
-        "createdBy",
-        "updatedBy",
-      ]);
+      return updatedTheater;
     } catch (error) {
       logger.error(`Error updating theater with ID ${id}: ${error.message}`);
       throw new GraphQLError("Failed to update theater");
@@ -206,4 +213,4 @@ export class TheaterResolver {
   }
 }
 
-export default TheaterResolver;
+export default TheaterService;

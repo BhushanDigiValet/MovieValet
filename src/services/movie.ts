@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { restrictRole } from "../Auth/authorization";
 import { Movie } from "../models";
 import { UserRole } from "../types/defaultValue";
@@ -6,7 +5,7 @@ import { GraphQLError } from "graphql";
 import logger from "../utils/loggers";
 import { MovieInput, UpdateMovieInput } from "../types/movie.type";
 
-export class MovieResolver {
+export class MovieService {
   static async movies(
     _,
     { input = {} }: { input?: Partial<MovieInput> },
@@ -18,24 +17,24 @@ export class MovieResolver {
 
     if (title) filter.title = title;
     if (genre) filter.genre = genre;
-    if (imdbRating) filter.imdbRating = imdbRating;
+    if (imdbRating) filter.imdbRating = { $gte: imdbRating };
 
     try {
       const allMovies = await Movie.find(
         filter,
         "title description genre imdbRating language posterUrl starCast durationMinutes releaseDate"
-      );
+      ).lean();
       logger.info(`Fetched ${allMovies.length} movies`);
       return allMovies;
     } catch (error) {
       logger.error(`Error fetching movies: ${error.message}`);
-      throw new GraphQLError("Failed to fetch movies");
+      throw new GraphQLError(`Failed to fetch movies : ${error.message}`);
     }
   }
 
   static async movie(_, { id }: { id: string }) {
     try {
-      const movie = await Movie.findById(id);
+      const movie = await Movie.findById(id).lean();
       if (!movie) {
         logger.warn(`Movie with ID ${id} not found`);
         throw new GraphQLError("Movie not found");
@@ -52,18 +51,17 @@ export class MovieResolver {
     restrictRole(context, [UserRole.CUSTOMER, UserRole.THEATER_ADMIN]);
 
     try {
-      const existingMovie = await Movie.findOne({
+      const movieExists = await Movie.exists({
         title: input.title,
         isDeleted: false,
       });
-      if (existingMovie) {
+      if (movieExists) {
         logger.warn(`Attempt to create duplicate movie: ${input.title}`);
         throw new GraphQLError("Movie already exists");
       }
 
-      const createdBy = context.user
-        ? new mongoose.Types.ObjectId(context.user.id)
-        : null;
+      const createdBy = context.user;
+      context.user?.id || null;
 
       const newMovie = new Movie({
         ...input,
@@ -88,20 +86,20 @@ export class MovieResolver {
     restrictRole(context, [UserRole.CUSTOMER, UserRole.THEATER_ADMIN]);
 
     try {
+      const movieExists = await Movie.exists({ _id: id });
+      if (!movieExists) {
+        logger.warn(`Attempt to delete non-existent movie with ID ${id}`);
+        throw new GraphQLError("Movie not found");
+      }
       const updatedMovie = await Movie.findByIdAndUpdate(
         id,
         {
           isDeleted: true,
-          updatedBy: new mongoose.Types.ObjectId(context.user.id),
+          updatedBy: context.user.id,
           updatedAt: new Date(),
         },
         { new: true }
-      );
-
-      if (!updatedMovie) {
-        logger.warn(`Attempt to delete non-existent movie with ID ${id}`);
-        throw new GraphQLError("Movie not found");
-      }
+      ).populate(["createdBy", "updatedBy"]);
 
       logger.info(`Movie deleted: ${id}`);
       return updatedMovie;
@@ -119,22 +117,24 @@ export class MovieResolver {
     restrictRole(context, [UserRole.CUSTOMER, UserRole.THEATER_ADMIN]);
 
     try {
-      const existingMovie = await Movie.findById(id);
-      if (!existingMovie) {
+      const movieExists = await Movie.exists({ _id: id });
+      if (!movieExists) {
         logger.warn(`Attempt to update non-existent movie with ID ${id}`);
         throw new GraphQLError("Movie not found");
       }
 
-      const updatedData = {
-        ...input,
-        updatedBy: new mongoose.Types.ObjectId(context.user.id),
-        updatedAt: new Date(),
-      };
-
-      const updatedMovie = await Movie.findByIdAndUpdate(id, updatedData, {
-        new: true,
-        runValidators: true,
-      });
+      const updatedMovie = await Movie.findByIdAndUpdate(
+        id,
+        {
+          ...input,
+          updatedBy: context.user.id,
+          updatedAt: new Date(),
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      ).populate(["createdBy", "updatedBy"]);
 
       logger.info(`Movie updated: ${id}`);
       return updatedMovie;
@@ -145,4 +145,4 @@ export class MovieResolver {
   }
 }
 
-export default MovieResolver;
+export default MovieService;

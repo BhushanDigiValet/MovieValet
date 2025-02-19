@@ -1,5 +1,6 @@
 import { Schema, model, Document, Types } from "mongoose";
 import { UserRole } from "../types/defaultValue";
+import { City } from "./City";
 
 export interface IUser extends Document {
   username: string;
@@ -7,10 +8,11 @@ export interface IUser extends Document {
   email: string;
   role: UserRole;
   isDeleted: boolean;
-  createdBy?: Types.ObjectId; 
+  createdBy?: Types.ObjectId;
   createdAt: Date;
-  updatedBy?: Types.ObjectId; 
+  updatedBy?: Types.ObjectId;
   updatedAt?: Date;
+  cityId?: Types.ObjectId;
 }
 
 const UserSchema = new Schema<IUser>({
@@ -52,7 +54,10 @@ const UserSchema = new Schema<IUser>({
     type: Date,
     default: Date.now,
   },
+  cityId: {
+    type: Schema.Types.ObjectId,
+    ref: "City",
+  },
 });
-
 
 export default model<IUser>("User", UserSchema);

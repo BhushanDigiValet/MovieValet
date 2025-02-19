@@ -53,13 +53,3 @@ const theaterTypeDefs = `#graphql
 
 export default theaterTypeDefs;
 
-// type Query {
-//     getTheaters: [Theater!]!
-//     getTheater(id: ID!): Theater
-//   }
-
-//   type Mutation {
-//     createTheater(input: TheaterInput!): Theater!
-//     updateTheater(id: ID!, input: TheaterInput!): Theater!
-//     deleteTheater(id: ID!): Boolean!
-//   }

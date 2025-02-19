@@ -6,6 +6,7 @@ export interface RegisterInput {
   email: string;
   password: string;
   role: UserRole;
+  cityId?: string;
 }
 
 export interface UserUpdateInput {

@@ -24,7 +24,7 @@ type Query {
 
 type Mutation {
   createReservation(input: ReservationInput!): Reservation
-  cancelReservation(id: ID!): Boolean
+  cancelReservation(id: ID!): Reservation!
 }
 `;
 export default reservationTypeDefs;

@@ -12,17 +12,22 @@ import {
 
 export class UserResolver {
   static async register(_: any, { input }: { input: RegisterInput }, context) {
-    const { username, email, password, role } = input;
+    const { username, email, password, role, cityId } = input;
 
     try {
       validateRoleCreation(role, context);
 
-      const existingUser = await User.findOne({ email });
-      if (existingUser) {
+      const userExists = await User.exists({ email });
+      if (userExists) {
         logger.warn(
           `Registration attempt failed: User with email ${email} already exists`
         );
         throw new GraphQLError("User already exists");
+      }
+
+      if (role === UserRole.CUSTOMER && !cityId) {
+        logger.warn("Customer must provide a city");
+        throw new GraphQLError("Customer must provide a city");
       }
 
       const passwordHash = await hashPassword(password);
@@ -32,24 +37,23 @@ export class UserResolver {
         email,
         passwordHash,
         role,
-        createdBy: context.user ? context.user.id : undefined,
+        createdBy: context.user?.id || null,
         isDeleted: false,
         createdAt: new Date(),
         updatedAt: new Date(),
+        cityId: cityId || null,
       });
 
       await newUser.save();
+      await newUser.populate(["cityId"]);
 
-      logger.info(`New user registered: ${username} (${email}), role: ${role}`);
+      logger.info(
+        `New user registered: ${username} (${email}), role: ${role} `
+      );
 
-      return {
-        username: username,
-        email: email,
-        role: role,
-        message: "User registered successfully",
-      };
+      return newUser;
     } catch (error) {
-      logger.error(`Registration error: ${error.message}`);
+      logger.error(`Registration error: ${error}`);
       throw new GraphQLError("Failed to register user");
     }
   }

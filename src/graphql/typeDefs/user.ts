@@ -4,7 +4,10 @@ const userDefs = `#graphql
     THEATER_ADMIN
     CUSTOMER
   }
-  
+  type city{
+    _id:ID
+    name:String!
+  }
   type User{
     id:ID!
     username: String!
@@ -15,6 +18,7 @@ const userDefs = `#graphql
     updatedBy: ID
     createdAt: String!
     updatedAt: String
+    cityId: city
   }
   input UserFilterInput {
     role: UserRole
@@ -25,6 +29,7 @@ const userDefs = `#graphql
     email: String!
     password: String!
     role: UserRole!
+    cityId: ID
 }
 
   type AuthPayload {
@@ -36,6 +41,7 @@ const userDefs = `#graphql
     username: String
     email: String
     role:UserRole
+    city: ID
     message: String
   }
   
@@ -43,6 +49,7 @@ const userDefs = `#graphql
     username: String
     email: String
     role: UserRole
+    cityId: String
 }
 
 input LoginInput {
@@ -56,10 +63,10 @@ input LoginInput {
   }
 
   type Mutation {
-    register(input: RegisterInput!): OutputRegister
+    register(input: RegisterInput!): User
     login(input: LoginInput!): AuthPayload
     deleteUser(id: ID!): OutputRegister
-    updateUser(id: ID!, input: UpdateUserInput!): OutputRegister
+    updateUser(id: ID!, input: UpdateUserInput!): User
   }
 `;
 

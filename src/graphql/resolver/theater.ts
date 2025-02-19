@@ -1,14 +1,14 @@
-import TheaterResolver from "../../services/theater";
+import TheaterService from "../../services/theater";
 
 const theaterResolver = {
   Query: {
-    theaters: TheaterResolver.theaters,
-    theater: TheaterResolver.theater,
+    theaters: TheaterService.theaters,
+    theater: TheaterService.theater,
   },
   Mutation: {
-    createTheater: TheaterResolver.createTheater,
-    deleteTheater: TheaterResolver.deleteTheater,
-    updateTheater: TheaterResolver.updateTheater,
+    createTheater: TheaterService.createTheater,
+    deleteTheater: TheaterService.deleteTheater,
+    updateTheater: TheaterService.updateTheater,
   },
 };
 

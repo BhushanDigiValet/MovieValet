@@ -4,5 +4,6 @@ import Theater from "./Theater";
 import Show from "./Show";
 import Reservation from "./Reservation";
 import Transaction from "./Transation";
+import {City} from "./City"
 
-export { User, Movie, Theater, Show, Transaction, Reservation };
+export {City, User, Movie, Theater, Show, Transaction, Reservation };

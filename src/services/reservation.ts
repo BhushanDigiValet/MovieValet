@@ -48,7 +48,43 @@ export class ReservationService {
     }
   }
 
-  
+  static async cancelReservation(_, { id }: { id: string }, context) {
+    restrictRole(context, []);
+
+    const reservation = await Reservation.findById(id);
+    if (!reservation) {
+      throw new GraphQLError("Reservation not found");
+    }
+
+    if (context.user.role === UserRole.CUSTOMER) {
+      if (reservation.userId.toString() !== context.user.id) {
+        throw new GraphQLError("You are not the owner of this reservation");
+      }
+    }
+
+    if (context.user.role === UserRole.THEATER_ADMIN) {
+      const show = await Show.findById(reservation.showId);
+      if (!show) {
+        throw new GraphQLError("Show not found for this reservation");
+      }
+      const theater = await Theater.findById(show.theaterId);
+      if (!theater) {
+        throw new GraphQLError("Theater not found for this reservation");
+      }
+
+      if (theater.adminId.toString() !== context.user.id) {
+        throw new GraphQLError(
+          "You are not authorized to cancel this reservation"
+        );
+      }
+    }
+
+    return await Reservation.findByIdAndUpdate(
+      id,
+      { isDeleted: true },
+      { new: true }
+    );
+  }
 
   static async createReservation(
     _,
@@ -63,7 +99,11 @@ export class ReservationService {
     try {
       const [show, reservedSeats] = await Promise.all([
         Show.findById(showId),
-        Reservation.find({ showId, seatNumber: { $in: seatNumber } }),
+        Reservation.find({
+          showId,
+          seatNumber: { $in: seatNumber },
+          isDeleted: false,
+        }),
       ]);
 
       if (!show || show.isDeleted) {
@@ -91,8 +131,7 @@ export class ReservationService {
 
       return reservation;
     } catch (error) {
-      console.error("Reservation Error:", error);
-      throw new GraphQLError("Failed to create reservation. Please try again.");
+      throw new GraphQLError(`Failed to create reservation.. ${error.message}`);
     }
   }
 }

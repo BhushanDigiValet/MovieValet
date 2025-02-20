@@ -58,6 +58,25 @@ export class ReservationService {
       throw new GraphQLError(`Failed to fetch reservations. ${error.message}`);
     }
   }
+  static async getReservationsByUser(
+    _,
+    { userId }: { userId: string },
+    context
+  ) {
+    restrictRole(context, [UserRole.THEATER_ADMIN]);
+
+    try {
+      const userReservation = await Reservation.find({ userId }).populate([
+        userId,
+      ]);
+      return userReservation;
+    } catch (error) {
+      logger.error(`Error in finding reservation by ID ${error.message}`);
+      throw new GraphQLError(
+        `Error in finding reservation by ID ${error.message}`
+      );
+    }
+  }
 
   static async cancelReservation(_, { id }: { id: string }, context) {
     restrictRole(context, []);

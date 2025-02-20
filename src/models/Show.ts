@@ -3,12 +3,14 @@ import { Schema, model, Document, Types } from "mongoose";
 export interface IShow extends Document {
   movieId: Types.ObjectId;
   theaterId: Types.ObjectId;
-  showTime: Date;
+  showStartTime: Date;
+  showEndTime: Date;
   createdBy?: Types.ObjectId;
   updatedBy?: Types.ObjectId;
-  createdAT: Date;
+  createdAt: Date;
   updatedAt: Date;
   isDeleted: boolean;
+  amount: number;
 }
 
 const ShowSchema = new Schema<IShow>({
@@ -22,7 +24,11 @@ const ShowSchema = new Schema<IShow>({
     ref: "Theater",
     required: true,
   },
-  showTime: {
+  showStartTime: {
+    type: Date,
+    required: true,
+  },
+  showEndTime: {
     type: Date,
     required: true,
   },
@@ -34,7 +40,7 @@ const ShowSchema = new Schema<IShow>({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  createdAT: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
@@ -45,6 +51,10 @@ const ShowSchema = new Schema<IShow>({
   isDeleted: {
     type: Boolean,
     default: false,
+  },
+  amount: {
+    type: Number,
+    required: true,
   },
 });
 

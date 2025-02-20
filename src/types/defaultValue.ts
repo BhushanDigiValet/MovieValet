@@ -25,6 +25,12 @@ export enum TransactionStatus {
   REFUNDED = "REFUNDED",
 }
 
+export interface IUserCredential {
+  cardNumber: number;
+  pin: number;
+  cvv: number;
+}
+
 export interface ILocation {
   address: string;
   city: string;

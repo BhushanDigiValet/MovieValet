@@ -4,19 +4,23 @@ type Show {
   id: ID!
   movieId: Movie!
   theaterId: Theater!
-  showTime: String!
+  showStartTime: String!
+  showEndTime: String!
   createdBy: User
   updatedBy: User
   createdAT: String!
   updatedAt: String!
   isDeleted: Boolean!
+  amount: Float!
 }
 
 # Define the input types for mutations
 input CreateShowInput {
   movieId: ID!
   theaterId: ID!
-  showTime: String!
+  showStartTime: String!
+  showEndTime: String!
+  amount: Float!
   createdBy: ID
 
 }
@@ -24,7 +28,9 @@ input CreateShowInput {
 input UpdateShowInput {
   movieId: ID
   theaterId: ID
-  showTime: String
+  showStartTime: String
+  showEndTime: String
+  amount: String
 }
 
 # Define the Query type to fetch data

@@ -4,9 +4,9 @@ import { UserRole } from "../types/defaultValue";
 import { restrictRole } from "../Auth/authorization";
 import { ShowInput, UpdateInput } from "../types/show.type";
 import logger from "../utils/loggers";
+import isShowOverlapping from "../utils/showUtils";
 
 export class ShowResolver {
-  
   static shows = async (parent, args, context) => {
     restrictRole(context, []);
 
@@ -59,7 +59,7 @@ export class ShowResolver {
       }
 
       if (context.user.role === UserRole.CUSTOMER) {
-        if (new Date(show.showTime) < new Date()) {
+        if (new Date(show.showStartTime) < new Date()) {
           throw new GraphQLError("Show has already passed.");
         }
       }
@@ -91,7 +91,7 @@ export class ShowResolver {
 
   static createShow = async (_, { input }: { input: ShowInput }, context) => {
     restrictRole(context, [UserRole.CUSTOMER]);
-    const { movieId, theaterId, showTime } = input;
+    const { movieId, theaterId, showStartTime, showEndTime, amount } = input;
 
     try {
       const movieExists = await Movie.exists({ _id: movieId });
@@ -108,47 +108,40 @@ export class ShowResolver {
         adminId: context.user.id,
       });
 
-      if (!isAdminOfTheater) {
+      if (!isAdminOfTheater && context.user.role === UserRole.THEATER_ADMIN) {
         throw new GraphQLError(
           "Theater Admin can only add shows for their theater."
         );
       }
 
-      if (new Date(showTime) <= new Date()) {
+      if (new Date(showStartTime) <= new Date()) {
         throw new GraphQLError("Showtime must be in the future.");
       }
-
-      // Overlapping show check
-      const movie = await Movie.findById(movieId);
-      const showDuration = movie?.durationMinutes ?? 0;
-      const showStartTime = new Date(showTime);
-      const showEndTime = new Date(
-        showStartTime.getTime() + showDuration * 60000
-      ); // duration in milliseconds
-
-      const overlappingShow = await Show.findOne({
+      const check = await isShowOverlapping(
         theaterId,
-        showTime: { $lt: showEndTime },
-        isDeleted: false,
-      });
-
-      if (overlappingShow) {
+        showStartTime,
+        showEndTime
+      );
+      if (check) {
         throw new GraphQLError(
-          "There is already a show scheduled in this theater during this time."
+          "Some show already place. try some another time"
         );
       }
 
       const show = await Show.create({
         movieId,
         theaterId,
-        showTime,
+        showStartTime,
+        showEndTime,
         createdBy: context.user.id,
         updatedBy: context.user.id,
+        amount,
       });
-      return show;
+      const fullShowData = await show.populate(["movieId", "theaterId"]);
+      return fullShowData;
     } catch (error) {
       logger.error(`Error creating show: ${error.message}`);
-      throw new GraphQLError("Failed to create show");
+      throw new GraphQLError(`Error creating show: ${error.message}`);
     }
   };
 
@@ -169,7 +162,7 @@ export class ShowResolver {
         _id: show.theaterId,
         adminId: context.user.id,
       });
-      if (!theater) {
+      if (!theater && context.user.role === UserRole.THEATER_ADMIN) {
         throw new GraphQLError(
           "Theater Admin can only update shows for their theater."
         );
@@ -222,7 +215,7 @@ export class ShowResolver {
         "updatedBy",
       ]);
     } catch (error) {
-      logger.error("Error in Updating Show:", error);
+      logger.error("Error in Updating Show:", error.message);
       throw new GraphQLError("Error in Updating Show");
     }
   };

@@ -1,9 +1,13 @@
 import { GraphQLError } from "graphql";
 import { restrictRole } from "../../Auth/authorization";
 import { Reservation, Transaction } from "../../models";
-import { TransactionStatus, UserRole } from "../../types/defaultValue";
+import {
+  IUserCredential,
+  TransactionStatus,
+  UserRole,
+} from "../../types/defaultValue";
 import logger from "../../utils/loggers";
-import { Query } from "mongoose";
+import { credentialCheck } from "../../utils/transactionUtils";
 
 const transactionResolver = {
   Query: {
@@ -51,6 +55,7 @@ const transactionResolver = {
           amount: number;
           paymentMethod: string;
           status: TransactionStatus;
+          userCredential: IUserCredential;
         };
       },
       context
@@ -59,6 +64,7 @@ const transactionResolver = {
 
       try {
         const reservation = await Reservation.findById(id);
+
         if (!reservation) {
           logger.warn(
             `${context.user.id} please provide a valid reservation ID`
@@ -67,7 +73,15 @@ const transactionResolver = {
             `${context.user.id} please provide a valid reservation ID`
           );
         }
+
+        credentialCheck(input.userCredential);
+
         const transaction = await Transaction.create(input);
+
+        if (!transaction) {
+          logger.warn("Failed to create transaction.");
+          throw new GraphQLError("Failed to create transaction.");
+        }
 
         reservation.transactionId = transaction.id;
         await reservation.save();

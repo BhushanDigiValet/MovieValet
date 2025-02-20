@@ -1,4 +1,4 @@
-const transactionTypeDefs=`#graphql
+const transactionTypeDefs = `#graphql
 enum TransactionStatus {
   PENDING
   COMPLETED
@@ -13,11 +13,17 @@ type Transaction {
   status: TransactionStatus!
   transactionTime: String!
 }
+input Credential{
+  cardNumber:Int!
+  pin: Int!
+  cvv: Int!
+}
 
 input CreateTransactionInput {
   amount: Float!
   paymentMethod: String!
   status: TransactionStatus!
+  userCredential: Credential!
 }
 
 type Query {
@@ -26,7 +32,7 @@ type Query {
 }
 
 type Mutation {
-  createTransaction(id:ID,input: CreateTransactionInput!): Transaction!
-}`
+  createTransaction(id:ID! ,input: CreateTransactionInput!): Transaction!
+}`;
 
 export default transactionTypeDefs;

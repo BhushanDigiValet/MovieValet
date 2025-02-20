@@ -28,17 +28,16 @@ export const generateToken = (user): string => {
       role: user.role,
     },
     JWT_SECRET,
-    { expiresIn: "1h" }
+    { expiresIn: "10h" }
   );
 };
 
-export const getUserFromToken= async(token: string)=> {
+export const getUserFromToken = async (token: string) => {
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as any;
-  
-     
+
     return { id: decoded.id, username: decoded.username, role: decoded.role };
   } catch (error) {
     return null;
   }
-}
+};

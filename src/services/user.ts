@@ -1,7 +1,7 @@
 import { GraphQLError } from "graphql";
 import { hashPassword } from "../Auth/auth";
 import { restrictRole, validateRoleCreation } from "../Auth/authorization";
-import { User } from "../models";
+import { City, User } from "../models";
 import { UserRole } from "../types/defaultValue";
 import logger from "../utils/loggers";
 import {
@@ -12,7 +12,7 @@ import {
 
 export class UserResolver {
   static async register(_: any, { input }: { input: RegisterInput }, context) {
-    const { username, email, password, role, cityId } = input;
+    const { username, email, password, role, cityName } = input;
 
     try {
       validateRoleCreation(role, context);
@@ -25,9 +25,18 @@ export class UserResolver {
         throw new GraphQLError("User already exists");
       }
 
-      if (role === UserRole.CUSTOMER && !cityId) {
+      if (role === UserRole.CUSTOMER && !cityName) {
         logger.warn("Customer must provide a city");
         throw new GraphQLError("Customer must provide a city");
+      }
+
+      const city = cityName
+        ? await City.findOne({ name: cityName.toLowerCase() })
+        : null;
+
+      if (!city && role === UserRole.CUSTOMER) {
+        logger.warn(`City not found: ${cityName}`);
+        throw new GraphQLError("City not found");
       }
 
       const passwordHash = await hashPassword(password);
@@ -41,20 +50,18 @@ export class UserResolver {
         isDeleted: false,
         createdAt: new Date(),
         updatedAt: new Date(),
-        cityId: cityId || null,
+        cityId: city ? city.id : null,
       });
 
       await newUser.save();
       await newUser.populate(["cityId"]);
 
-      logger.info(
-        `New user registered: ${username} (${email}), role: ${role} `
-      );
+      logger.info(`New user registered: ${username} (${email}), role: ${role}`);
 
       return newUser;
     } catch (error) {
       logger.error(`Registration error: ${error}`);
-      throw new GraphQLError("Failed to register user");
+      throw new GraphQLError(`Failed to register user: ${error.message}`);
     }
   }
 
@@ -122,7 +129,8 @@ export class UserResolver {
         }`
       );
 
-      const users = await User.find(filter);
+      const users = await User.find(filter).populate(["cityId"]);
+
       return users;
     } catch (error) {
       logger.error(`Error fetching users: ${error.message}`);

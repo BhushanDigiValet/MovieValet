@@ -15,6 +15,7 @@ interface MyContext {
     role: string;
   };
   req: express.Request;
+  res: express.Response;
 }
 
 const createServer = async () => {
@@ -30,17 +31,22 @@ const createServer = async () => {
   await server.start();
 
   app.use(
+    cors({
+      origin: "http://localhost:4200",
+      credentials: true,
+    })
+  );
+
+  app.use(express.json());
+
+  app.use(
     "/",
-    cors<cors.CorsRequest>(),
-    express.json(),
     expressMiddleware(server, {
-      context: async ({ req }): Promise<MyContext> => {
-        const token = req.headers.authorization;
-
+      context: async ({ req, res }): Promise<MyContext> => {
+        // const token = req.headers.authorization;
+        const token = req.headers.authorization?.split("Bearer ")[1];
         const user = token ? await getUserFromToken(token) : null;
-  
-
-        return { user, req };
+        return { user, req, res };
       },
     })
   );

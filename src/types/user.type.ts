@@ -6,7 +6,7 @@ export interface RegisterInput {
   email: string;
   password: string;
   role: UserRole;
-  cityId?: string;
+  cityName?: string;
 }
 
 export interface UserUpdateInput {
@@ -18,4 +18,6 @@ export interface UserUpdateInput {
 
 export interface UserFilterInput {
   role?: UserRole;
+  limit?: number;
+  offset?: number;
 }

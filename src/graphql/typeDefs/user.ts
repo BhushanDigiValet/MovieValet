@@ -22,6 +22,8 @@ const userDefs = `#graphql
   }
   input UserFilterInput {
     role: UserRole
+    limit: Int
+    offset: Int
   }
 
   input RegisterInput {
@@ -29,7 +31,7 @@ const userDefs = `#graphql
     email: String!
     password: String!
     role: UserRole!
-    cityId: ID
+    cityName: String
 }
 
   type AuthPayload {

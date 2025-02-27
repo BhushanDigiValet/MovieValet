@@ -22,13 +22,13 @@ export const login = async (_: any, { input }: any, context) => {
 
   const token = generateToken(user);
 
-  // context.res.cookie("token", token, {
-  //   httpOnly: true,
-  //   secure: process.env.NODE_ENV === "production",
-  //   sameSite: "strict",
-  //   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-  // });
-
+  context.res.cookie("token", token, {
+   
+    secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+    sameSite: "strict", // Prevent CSRF attacks
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+  });
+ 
   logger.info(`User ${email} logged in successfully`);
 
   return { token, message: "Login successful" };

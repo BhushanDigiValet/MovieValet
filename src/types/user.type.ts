@@ -15,6 +15,7 @@ export interface UserUpdateInput {
   password?: string;
   role?: UserRole;
   cityId?: string;
+  isDeleted?:boolean;
 }
 
 export interface UserFilterInput {

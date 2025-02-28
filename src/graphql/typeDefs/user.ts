@@ -52,6 +52,7 @@ const userDefs = `#graphql
     email: String
     role: UserRole
     cityName: String
+    isDeleted: Boolean
 }
 
 input LoginInput {

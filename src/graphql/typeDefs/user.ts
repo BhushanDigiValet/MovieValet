@@ -51,7 +51,7 @@ const userDefs = `#graphql
     username: String
     email: String
     role: UserRole
-    cityId: String
+    cityName: String
 }
 
 input LoginInput {

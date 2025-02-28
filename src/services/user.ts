@@ -201,6 +201,9 @@ export class UserResolver {
           extensions: { code: "FORBIDDEN" },
         });
       }
+      if(input.cityId){
+        input.cityId
+      }
 
       const updatedUser = await User.findByIdAndUpdate(id, input, {
         new: true,

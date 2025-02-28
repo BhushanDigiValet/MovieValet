@@ -14,6 +14,7 @@ export interface UserUpdateInput {
   email?: string;
   password?: string;
   role?: UserRole;
+  cityId?: string;
 }
 
 export interface UserFilterInput {

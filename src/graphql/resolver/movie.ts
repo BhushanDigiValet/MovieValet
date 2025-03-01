@@ -1,5 +1,4 @@
-import MovieResolver from "../../services/movie";
-
+import MovieResolver from '../../services/movie';
 
 const movieResolver = {
   Query: {

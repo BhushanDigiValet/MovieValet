@@ -1,7 +1,7 @@
-import { GraphQLError } from "graphql";
-import { IUserCredential } from "../types/defaultValue";
+import { GraphQLError } from 'graphql';
+import { IUserCredential } from '../types/defaultValue';
 
-import logger from "./loggers";
+import logger from './loggers';
 
 export const credentialCheck = (userCredential: IUserCredential) => {
   if (
@@ -9,7 +9,7 @@ export const credentialCheck = (userCredential: IUserCredential) => {
     userCredential.pin !== 7777 &&
     userCredential.cvv !== 777
   ) {
-    logger.warn("Invaled credential");
-    throw new GraphQLError("Invaled credential");
+    logger.warn('Invaled credential');
+    throw new GraphQLError('Invaled credential');
   }
 };

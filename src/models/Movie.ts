@@ -1,5 +1,5 @@
-import { Schema, model, Document, Types } from "mongoose";
-import { IStarCast } from "../types/defaultValue";
+import { Schema, model, Document, Types } from 'mongoose';
+import { IStarCast } from '../types/defaultValue';
 
 export interface IMovie extends Document {
   title: string;
@@ -39,7 +39,7 @@ const MovieSchema = new Schema<IMovie>({
   },
   genre: {
     type: Schema.Types.ObjectId,
-    ref: "Genre",
+    ref: 'Genre',
     required: true,
   },
   imdbRating: {
@@ -69,11 +69,11 @@ const MovieSchema = new Schema<IMovie>({
   },
   createdBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   updatedBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   createdAt: {
     type: Date,
@@ -85,4 +85,4 @@ const MovieSchema = new Schema<IMovie>({
   },
 });
 
-export default model<IMovie>("Movie", MovieSchema);
+export default model<IMovie>('Movie', MovieSchema);

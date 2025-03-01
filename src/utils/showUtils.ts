@@ -1,11 +1,11 @@
-import { Show } from "../models";
-import logger from "../utils/loggers";
-import { GraphQLError } from "graphql";
+import { Show } from '../models';
+import logger from '../utils/loggers';
+
 
 const isShowOverlapping = async (
   theaterId: string,
   newStartTime: Date,
-  newEndTime: Date
+  newEndTime: Date,
 ): Promise<boolean> => {
   try {
     const overlappingShow = await Show.findOne({
@@ -17,13 +17,13 @@ const isShowOverlapping = async (
 
     if (overlappingShow) {
       logger.warn(
-        `Showtime conflict detected in theater ${theaterId} with an existing show from ${overlappingShow.showStartTime} to ${overlappingShow.showEndTime}`
+        `Showtime conflict detected in theater ${theaterId} with an existing show from ${overlappingShow.showStartTime} to ${overlappingShow.showEndTime}`,
       );
       return true;
     }
 
     logger.info(
-      `No showtime conflict. New show can be scheduled from ${newStartTime} to ${newEndTime}`
+      `No showtime conflict. New show can be scheduled from ${newStartTime} to ${newEndTime}`,
     );
     return false;
   } catch (error) {

@@ -1,5 +1,5 @@
-import { login } from "../../services/login";
-import UserResolver from "../../services/user";
+import { login } from '../../services/login';
+import UserResolver from '../../services/user';
 
 const resolvers = {
   Query: {

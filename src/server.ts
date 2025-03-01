@@ -1,12 +1,12 @@
 // src/server.ts
-import { ApolloServer } from "@apollo/server";
-import { expressMiddleware } from "@apollo/server/express4";
-import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
-import express from "express";
-import http from "http";
-import cors from "cors";
-import { typeDefs, resolvers } from "./graphql";
-import { getUserFromToken } from "./Auth/auth";
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import express from 'express';
+import http from 'http';
+import cors from 'cors';
+import { typeDefs, resolvers } from './graphql';
+import { getUserFromToken } from './Auth/auth';
 
 interface MyContext {
   user?: {
@@ -32,15 +32,15 @@ const createServer = async () => {
 
   app.use(
     cors({
-      origin: "http://localhost:4200",
+      origin: 'http://localhost:4200',
       credentials: true,
-    })
+    }),
   );
 
   app.use(express.json());
 
   app.use(
-    "/",
+    '/',
     expressMiddleware(server, {
       context: async ({ req, res }): Promise<MyContext> => {
         // const token = req.headers.authorization;
@@ -48,7 +48,7 @@ const createServer = async () => {
         const user = token ? await getUserFromToken(token) : null;
         return { user, req, res };
       },
-    })
+    }),
   );
 
   return httpServer;

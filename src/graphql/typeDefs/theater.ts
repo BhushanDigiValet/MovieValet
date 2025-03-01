@@ -29,7 +29,7 @@ const theaterTypeDefs = `#graphql
   input TheaterInput {
     name: String!
     location: LocationInput!
-    adminId: ID!
+    adminEmail: String!
   }
   input UpdateTheaterInput {
     name: String
@@ -52,4 +52,3 @@ const theaterTypeDefs = `#graphql
 `;
 
 export default theaterTypeDefs;
-

@@ -1,4 +1,4 @@
-import { ShowResolver } from "../../services/show";
+import { ShowResolver } from '../../services/show';
 
 const showResolver = {
   Query: {

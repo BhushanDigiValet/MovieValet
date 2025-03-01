@@ -1,10 +1,10 @@
-import { GraphQLError } from "graphql";
-import { Movie, Show, Theater } from "../models";
-import { UserRole } from "../types/defaultValue";
-import { restrictRole } from "../Auth/authorization";
-import { ShowInput, UpdateInput } from "../types/show.type";
-import logger from "../utils/loggers";
-import isShowOverlapping from "../utils/showUtils";
+import { GraphQLError } from 'graphql';
+import { Movie, Show, Theater } from '../models';
+import { UserRole } from '../types/defaultValue';
+import { restrictRole } from '../Auth/authorization';
+import { ShowInput, UpdateInput } from '../types/show.type';
+import logger from '../utils/loggers';
+import isShowOverlapping from '../utils/showUtils';
 
 export class ShowResolver {
   static shows = async (parent, args, context) => {
@@ -15,34 +15,28 @@ export class ShowResolver {
 
       if (context.user.role === UserRole.CUSTOMER) {
         filter.showTime = { $gte: new Date() };
-        return Show.find(filter).populate(["movieId", "theaterId"]);
+        return Show.find(filter).populate(['movieId', 'theaterId']);
       }
 
       if (context.user.role === UserRole.THEATER_ADMIN) {
         filter.adminId = context.user.id;
         const theater = await Theater.findOne(filter).populate([
-          "movieId",
-          "theaterId",
-          "createdBy",
+          'movieId',
+          'theaterId',
+          'createdBy',
         ]);
 
         if (!theater) {
-          throw new GraphQLError(
-            "Theater Admin does not have an associated theater."
-          );
+          throw new GraphQLError('Theater Admin does not have an associated theater.');
         }
 
-        return Show.find(filter).populate([
-          "movieId",
-          "theaterId",
-          "createdBy",
-        ]);
+        return Show.find(filter).populate(['movieId', 'theaterId', 'createdBy']);
       }
 
-      return Show.find(filter).populate(["movieId", "theaterId", "createdBy"]);
+      return Show.find(filter).populate(['movieId', 'theaterId', 'createdBy']);
     } catch (error) {
       logger.error(`Error fetching shows: ${error.message}`, { error: error });
-      throw new GraphQLError("Failed to fetch shows");
+      throw new GraphQLError('Failed to fetch shows');
     }
   };
 
@@ -52,15 +46,15 @@ export class ShowResolver {
     try {
       const show = await Show.findById(id);
       if (show.isDeleted) {
-        throw new GraphQLError("Show is deleted");
+        throw new GraphQLError('Show is deleted');
       }
       if (!show) {
-        throw new GraphQLError("Show not found");
+        throw new GraphQLError('Show not found');
       }
 
       if (context.user.role === UserRole.CUSTOMER) {
         if (new Date(show.showStartTime) < new Date()) {
-          throw new GraphQLError("Show has already passed.");
+          throw new GraphQLError('Show has already passed.');
         }
       }
 
@@ -71,21 +65,14 @@ export class ShowResolver {
         });
 
         if (!theater) {
-          throw new GraphQLError(
-            "Theater Admin can only view shows for their theater."
-          );
+          throw new GraphQLError('Theater Admin can only view shows for their theater.');
         }
       }
 
-      return await show.populate([
-        "movieId",
-        "theaterId",
-        "createdBy",
-        "updatedBy",
-      ]);
+      return await show.populate(['movieId', 'theaterId', 'createdBy', 'updatedBy']);
     } catch (error) {
       logger.error(`Error fetching show: ${error.message}`, { error: error });
-      throw new GraphQLError("Failed to fetch show");
+      throw new GraphQLError('Failed to fetch show');
     }
   };
 
@@ -96,12 +83,10 @@ export class ShowResolver {
     try {
       const movieExists = await Movie.exists({ _id: movieId });
 
-      if (!movieExists)
-        throw new GraphQLError("Invalid movieId. Movie not found.");
+      if (!movieExists) throw new GraphQLError('Invalid movieId. Movie not found.');
 
       const theaterExists = await Theater.exists({ _id: theaterId });
-      if (!theaterExists)
-        throw new GraphQLError("Invalid theaterId. Theater not found.");
+      if (!theaterExists) throw new GraphQLError('Invalid theaterId. Theater not found.');
 
       const isAdminOfTheater = await Theater.exists({
         _id: theaterId,
@@ -109,23 +94,15 @@ export class ShowResolver {
       });
 
       if (!isAdminOfTheater && context.user.role === UserRole.THEATER_ADMIN) {
-        throw new GraphQLError(
-          "Theater Admin can only add shows for their theater."
-        );
+        throw new GraphQLError('Theater Admin can only add shows for their theater.');
       }
 
       if (new Date(showStartTime) <= new Date()) {
-        throw new GraphQLError("Showtime must be in the future.");
+        throw new GraphQLError('Showtime must be in the future.');
       }
-      const check = await isShowOverlapping(
-        theaterId,
-        showStartTime,
-        showEndTime
-      );
+      const check = await isShowOverlapping(theaterId, showStartTime, showEndTime);
       if (check) {
-        throw new GraphQLError(
-          "Some show already place. try some another time"
-        );
+        throw new GraphQLError('Some show already place. try some another time');
       }
 
       const show = await Show.create({
@@ -137,7 +114,7 @@ export class ShowResolver {
         updatedBy: context.user.id,
         amount,
       });
-      const fullShowData = await show.populate(["movieId", "theaterId"]);
+      const fullShowData = await show.populate(['movieId', 'theaterId']);
       return fullShowData;
     } catch (error) {
       logger.error(`Error creating show: ${error.message}`);
@@ -145,17 +122,13 @@ export class ShowResolver {
     }
   };
 
-  static updateShow = async (
-    _,
-    { id, input }: { id: string; input: UpdateInput },
-    context
-  ) => {
+  static updateShow = async (_, { id, input }: { id: string; input: UpdateInput }, context) => {
     restrictRole(context, [UserRole.CUSTOMER]);
 
     try {
       const show = await Show.findById(id);
       if (!show) {
-        throw new GraphQLError("Show not found");
+        throw new GraphQLError('Show not found');
       }
 
       const theater = await Theater.findOne({
@@ -163,22 +136,18 @@ export class ShowResolver {
         adminId: context.user.id,
       });
       if (!theater && context.user.role === UserRole.THEATER_ADMIN) {
-        throw new GraphQLError(
-          "Theater Admin can only update shows for their theater."
-        );
+        throw new GraphQLError('Theater Admin can only update shows for their theater.');
       }
 
       if (input.movieId) {
         const movieExists = await Movie.exists({ _id: input.movieId });
 
-        if (!movieExists)
-          throw new GraphQLError("Invalid movieId. Movie not found.");
+        if (!movieExists) throw new GraphQLError('Invalid movieId. Movie not found.');
       }
 
       if (input.theaterId) {
         const theaterExists = await Theater.exists({ _id: input.theaterId });
-        if (!theaterExists)
-          throw new GraphQLError("Invalid theaterId. Theater not found.");
+        if (!theaterExists) throw new GraphQLError('Invalid theaterId. Theater not found.');
 
         const isAdminOfTheater = await Theater.exists({
           _id: input.theaterId,
@@ -186,15 +155,13 @@ export class ShowResolver {
         });
 
         if (!isAdminOfTheater) {
-          throw new GraphQLError(
-            "Theater Admin can only update shows for their theater."
-          );
+          throw new GraphQLError('Theater Admin can only update shows for their theater.');
         }
       }
 
       if (input.showTime) {
         if (new Date(input.showTime) <= new Date()) {
-          throw new GraphQLError("Showtime must be in the future.");
+          throw new GraphQLError('Showtime must be in the future.');
         }
       }
 
@@ -208,15 +175,10 @@ export class ShowResolver {
       await show.save();
       logger.info(`Show with ID ${id} updated by Admin ${context.user.id}`);
 
-      return await show.populate([
-        "movieId",
-        "theaterId",
-        "createdBy",
-        "updatedBy",
-      ]);
+      return await show.populate(['movieId', 'theaterId', 'createdBy', 'updatedBy']);
     } catch (error) {
-      logger.error("Error in Updating Show:", error.message);
-      throw new GraphQLError("Error in Updating Show");
+      logger.error('Error in Updating Show:', error.message);
+      throw new GraphQLError('Error in Updating Show');
     }
   };
 
@@ -226,7 +188,7 @@ export class ShowResolver {
     try {
       const show = await Show.findById(id);
       if (!show) {
-        throw new GraphQLError("Show not found");
+        throw new GraphQLError('Show not found');
       }
 
       const theater = await Theater.findOne({
@@ -234,9 +196,7 @@ export class ShowResolver {
         adminId: context.user.id,
       });
       if (!theater) {
-        throw new GraphQLError(
-          "Theater Admin can only delete shows for their own theater."
-        );
+        throw new GraphQLError('Theater Admin can only delete shows for their own theater.');
       }
 
       show.isDeleted = true;
@@ -244,19 +204,12 @@ export class ShowResolver {
       show.updatedAt = new Date();
 
       await show.save();
-      logger.info(
-        `Show with ID ${id} marked as deleted by Admin ${context.user.id}`
-      );
+      logger.info(`Show with ID ${id} marked as deleted by Admin ${context.user.id}`);
 
-      return await show.populate([
-        "movieId",
-        "theaterId",
-        "createdBy",
-        "updatedBy",
-      ]);
+      return await show.populate(['movieId', 'theaterId', 'createdBy', 'updatedBy']);
     } catch (error) {
-      logger.error("Error in Deleting Show:", error);
-      throw new GraphQLError("Error in Deleting Show");
+      logger.error('Error in Deleting Show:', error);
+      throw new GraphQLError('Error in Deleting Show');
     }
   };
 }

@@ -1,4 +1,4 @@
-import TheaterService from "../../services/theater";
+import TheaterService from '../../services/theater';
 
 const theaterResolver = {
   Query: {

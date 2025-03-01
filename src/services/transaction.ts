@@ -1,10 +1,9 @@
-import { GraphQLError } from "graphql";
-import { Reservation, Transaction } from "../models";
-import { IUserCredential, TransactionStatus, UserRole } from "../types/defaultValue";
-import { restrictRole } from "../Auth/authorization";
-import logger from "../utils/loggers";
-import { credentialCheck } from "../utils/transactionUtils";
-
+import { GraphQLError } from 'graphql';
+import { Reservation, Transaction } from '../models';
+import { IUserCredential, TransactionStatus, UserRole } from '../types/defaultValue';
+import { restrictRole } from '../Auth/authorization';
+import logger from '../utils/loggers';
+import { credentialCheck } from '../utils/transactionUtils';
 
 class TransactionService {
   static async getAllTransactions(context) {
@@ -30,9 +29,7 @@ class TransactionService {
       return transaction;
     } catch (error) {
       logger.error(`Error in Getting Transactions id ${id} ; ${error.message}`);
-      throw new GraphQLError(
-        `Error in Getting Transactions id ${id} ; ${error.message}`
-      );
+      throw new GraphQLError(`Error in Getting Transactions id ${id} ; ${error.message}`);
     }
   }
 
@@ -44,7 +41,7 @@ class TransactionService {
       status: TransactionStatus;
       userCredential: IUserCredential;
     },
-    context
+    context,
   ) {
     restrictRole(context, [UserRole.THEATER_ADMIN]);
 
@@ -52,25 +49,21 @@ class TransactionService {
       const reservation = await Reservation.findById(id);
       if (!reservation) {
         logger.warn(`${context.user.id} please provide a valid reservation ID`);
-        throw new GraphQLError(
-          `${context.user.id} please provide a valid reservation ID`
-        );
+        throw new GraphQLError(`${context.user.id} please provide a valid reservation ID`);
       }
 
       credentialCheck(input.userCredential);
 
       const transaction = await Transaction.create(input);
       if (!transaction) {
-        logger.warn("Failed to create transaction.");
-        throw new GraphQLError("Failed to create transaction.");
+        logger.warn('Failed to create transaction.');
+        throw new GraphQLError('Failed to create transaction.');
       }
 
       reservation.transactionId = transaction.id;
       await reservation.save();
 
-      logger.info(
-        `Transaction ID: ${transaction.id} added to Reservation ID: ${reservation.id}`
-      );
+      logger.info(`Transaction ID: ${transaction.id} added to Reservation ID: ${reservation.id}`);
 
       return transaction;
     } catch (error) {

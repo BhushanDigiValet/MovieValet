@@ -1,4 +1,4 @@
-import { Schema, model, Document, Types } from "mongoose";
+import { Schema, model, Document, Types } from 'mongoose';
 
 export interface IShow extends Document {
   movieId: Types.ObjectId;
@@ -16,12 +16,12 @@ export interface IShow extends Document {
 const ShowSchema = new Schema<IShow>({
   movieId: {
     type: Schema.Types.ObjectId,
-    ref: "Movie",
+    ref: 'Movie',
     required: true,
   },
   theaterId: {
     type: Schema.Types.ObjectId,
-    ref: "Theater",
+    ref: 'Theater',
     required: true,
   },
   showStartTime: {
@@ -34,11 +34,11 @@ const ShowSchema = new Schema<IShow>({
   },
   createdBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   updatedBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   createdAt: {
     type: Date,
@@ -58,4 +58,4 @@ const ShowSchema = new Schema<IShow>({
   },
 });
 
-export default model<IShow>("Show", ShowSchema);
+export default model<IShow>('Show', ShowSchema);

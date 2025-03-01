@@ -10,11 +10,12 @@ const movieTypeDefs = `#graphql
   image: String!
 }
 
+
 type Movie {
   id: ID!
   title: String!
   description: String
-  genre:  ID!
+  genre:  Genre
   imdbRating: Float
   language: [String!]!
   posterUrl: String!
@@ -36,7 +37,7 @@ input StarCastInput {
 input CreateMovieInput {
   title: String!
   description: String
-  genre:  ID!
+  genre:  String!
   imdbRating: Float
   language: [String!]!
   posterUrl: String!

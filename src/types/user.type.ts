@@ -1,4 +1,4 @@
-import { UserRole } from "./defaultValue";
+import { UserRole } from './defaultValue';
 
 // types/user.ts
 export interface RegisterInput {
@@ -15,7 +15,7 @@ export interface UserUpdateInput {
   password?: string;
   role?: UserRole;
   cityId?: string;
-  isDeleted?:boolean;
+  isDeleted?: boolean;
 }
 
 export interface UserFilterInput {

@@ -1,4 +1,4 @@
-import TransactionService from "../../services/transaction";
+import TransactionService from '../../services/transaction';
 
 const transactionResolver = {
   Query: {

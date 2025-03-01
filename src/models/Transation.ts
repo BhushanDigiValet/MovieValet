@@ -1,5 +1,5 @@
-import { Schema, model, Document } from "mongoose";
-import { TransactionStatus } from "../types/defaultValue";
+import { Schema, model, Document } from 'mongoose';
+import { TransactionStatus } from '../types/defaultValue';
 
 export interface ITransaction extends Document {
   amount: number;
@@ -28,4 +28,4 @@ const TransactionSchema = new Schema<ITransaction>({
   },
 });
 
-export default model<ITransaction>("Transaction", TransactionSchema);
+export default model<ITransaction>('Transaction', TransactionSchema);

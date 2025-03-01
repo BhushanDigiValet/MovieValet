@@ -1,18 +1,18 @@
-import log4js from "log4js";
-import dotenv from "dotenv";
+import log4js from 'log4js';
+import dotenv from 'dotenv';
 dotenv.config();
 
 log4js.configure({
   appenders: {
     fileAppender: {
-      type: "file",
-      filename: "../logs/MovieValet.log",
+      type: 'file',
+      filename: '../logs/MovieValet.log',
       layout: {
-        type: "pattern",
-        pattern: "%d [%p] %x{file}:%x{line} - %m",
+        type: 'pattern',
+        pattern: '%d [%p] %x{file}:%x{line} - %m',
         tokens: {
-          file: (logEvent) => logEvent.fileName || "unknown",
-          line: (logEvent) => logEvent.lineNumber || "unknown",
+          file: (logEvent) => logEvent.fileName || 'unknown',
+          line: (logEvent) => logEvent.lineNumber || 'unknown',
           enableCallStack: true, // Still required
         },
       },
@@ -20,13 +20,13 @@ log4js.configure({
       enableCallStack: true, // ← Some versions require this
     },
     consoleAppender: {
-      type: "console",
+      type: 'console',
       layout: {
-        type: "pattern",
-        pattern: "%d [%p] %x{file}:%x{line} - %m",
+        type: 'pattern',
+        pattern: '%d [%p] %x{file}:%x{line} - %m',
         tokens: {
-          file: (logEvent) => logEvent.fileName || "unknown",
-          line: (logEvent) => logEvent.lineNumber || "unknown",
+          file: (logEvent) => logEvent.fileName || 'unknown',
+          line: (logEvent) => logEvent.lineNumber || 'unknown',
           enableCallStack: true, // Still required
         },
       },
@@ -35,8 +35,8 @@ log4js.configure({
   },
   categories: {
     default: {
-      appenders: ["fileAppender", "consoleAppender"],
-      level: process.env.NODE_ENV === "production" ? "info" : "debug",
+      appenders: ['fileAppender', 'consoleAppender'],
+      level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
     },
   },
 });
@@ -47,5 +47,5 @@ const logger = log4js.getLogger();
 //   fileName: logger.constructor.getLogEventFileName(),
 //   lineNumber: logger.constructor.getLogEventLineNumber(),
 // });
-logger.info("This is an informational message.");
+logger.info('This is an informational message.');
 export default logger;

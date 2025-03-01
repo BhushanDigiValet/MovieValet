@@ -68,7 +68,7 @@ input LoginInput {
   type Mutation {
     register(input: RegisterInput!): User
     login(input: LoginInput!): AuthPayload
-    deleteUser(id: ID!): OutputRegister
+    deleteUser(id: ID!): User
     updateUser(id: ID!, input: UpdateUserInput!): User
   }
 `;

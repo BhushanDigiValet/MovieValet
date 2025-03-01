@@ -1,8 +1,8 @@
 // src/index.ts
-import "dotenv/config";
-import createServer from "./server";
-import connectDB from "./config/db";
-import logger from "./utils/loggers";
+import 'dotenv/config';
+import createServer from './server';
+import connectDB from './config/db';
+import logger from './utils/loggers';
 
 const startServer = async () => {
   try {
@@ -13,7 +13,7 @@ const startServer = async () => {
       logger.info(`🚀 Server ready at http://localhost:${PORT}/`);
     });
   } catch (err) {
-    logger.error("Error starting server:", err);
+    logger.error('Error starting server:', err);
   }
 };
 

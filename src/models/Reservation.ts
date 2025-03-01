@@ -1,4 +1,4 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model, Document } from 'mongoose';
 
 export interface IReservation extends Document {
   userId: Schema.Types.ObjectId;
@@ -13,17 +13,17 @@ export interface IReservation extends Document {
 const ReservationSchema = new Schema<IReservation>({
   userId: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     required: true,
   },
   showId: {
     type: Schema.Types.ObjectId,
-    ref: "Show",
+    ref: 'Show',
     required: true,
   },
   transactionId: {
     type: Schema.Types.ObjectId,
-    ref: "Transaction",
+    ref: 'Transaction',
   },
   reservationTime: {
     type: Date,
@@ -43,4 +43,4 @@ const ReservationSchema = new Schema<IReservation>({
   },
 });
 
-export default model<IReservation>("Reservation", ReservationSchema);
+export default model<IReservation>('Reservation', ReservationSchema);

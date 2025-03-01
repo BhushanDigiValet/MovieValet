@@ -7,5 +7,5 @@ export interface ILocation {
 export interface CreateTheaterInput {
   name: string;
   location: ILocation;
-  adminId: string;
+  adminEmail: string;
 }

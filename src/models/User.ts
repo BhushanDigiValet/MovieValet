@@ -1,6 +1,6 @@
-import { Schema, model, Document, Types } from "mongoose";
-import { UserRole } from "../types/defaultValue";
-import { City } from "./City";
+import { Schema, model, Document, Types } from 'mongoose';
+import { UserRole } from '../types/defaultValue';
+import { City } from './City';
 
 export interface IUser extends Document {
   username: string;
@@ -40,7 +40,7 @@ const UserSchema = new Schema<IUser>({
   },
   createdBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   createdAt: {
     type: Date,
@@ -48,7 +48,7 @@ const UserSchema = new Schema<IUser>({
   },
   updatedBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   updatedAt: {
     type: Date,
@@ -56,8 +56,8 @@ const UserSchema = new Schema<IUser>({
   },
   cityId: {
     type: Schema.Types.ObjectId,
-    ref: "City",
+    ref: 'City',
   },
 });
 
-export default model<IUser>("User", UserSchema);
+export default model<IUser>('User', UserSchema);

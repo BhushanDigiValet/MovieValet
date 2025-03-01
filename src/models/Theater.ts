@@ -1,5 +1,5 @@
-import { Schema, model, Document, Types } from "mongoose";
-import { ILocation } from "../types/defaultValue";
+import { Schema, model, Document, Types } from 'mongoose';
+import { ILocation } from '../types/defaultValue';
 
 export interface ITheater extends Document {
   name: string;
@@ -39,10 +39,10 @@ const TheaterSchema = new Schema<ITheater>({
   location: {
     type: LocationSchema,
     required: true,
-  }, 
+  },
   adminId: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     required: true,
   },
   isDeleted: {
@@ -51,11 +51,11 @@ const TheaterSchema = new Schema<ITheater>({
   },
   createdBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   updatedBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   createdAt: {
     type: Date,
@@ -67,5 +67,4 @@ const TheaterSchema = new Schema<ITheater>({
   },
 });
 
-
-export default model<ITheater>("Theater", TheaterSchema);
+export default model<ITheater>('Theater', TheaterSchema);

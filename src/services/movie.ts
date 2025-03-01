@@ -1,16 +1,13 @@
-import { restrictRole } from "../Auth/authorization";
-import { Movie } from "../models";
-import { UserRole } from "../types/defaultValue";
-import { GraphQLError } from "graphql";
-import logger from "../utils/loggers";
-import { MovieInput, UpdateMovieInput } from "../types/movie.type";
+import { restrictRole } from '../Auth/authorization';
+import { Movie } from '../models';
+import { UserRole } from '../types/defaultValue';
+import { GraphQLError } from 'graphql';
+import logger from '../utils/loggers';
+import { MovieInput, UpdateMovieInput } from '../types/movie.type';
+import { Genre } from '../models/Genre';
 
 export class MovieService {
-  static async movies(
-    _,
-    { input = {} }: { input?: Partial<MovieInput> },
-    context
-  ) {
+  static async movies(_, { input = {} }: { input?: Partial<MovieInput> }, context) {
     restrictRole(context, []);
     const { title, genre, imdbRating } = input;
     const filter: Record<string, any> = { isDeleted: false };
@@ -22,8 +19,8 @@ export class MovieService {
     try {
       const allMovies = await Movie.find(
         filter,
-        "title description genre imdbRating language posterUrl starCast durationMinutes releaseDate"
-      ).lean();
+        'title description genre imdbRating language posterUrl starCast durationMinutes releaseDate',
+      ).populate(['genre']);
       logger.info(`Fetched ${allMovies.length} movies`);
       return allMovies;
     } catch (error) {
@@ -37,13 +34,13 @@ export class MovieService {
       const movie = await Movie.findById(id).lean();
       if (!movie) {
         logger.warn(`Movie with ID ${id} not found`);
-        throw new GraphQLError("Movie not found");
+        throw new GraphQLError('Movie not found');
       }
       logger.info(`Fetched movie with ID ${id}`);
       return movie;
     } catch (error) {
       logger.error(`Error fetching movie ${id}: ${error.message}`);
-      throw new GraphQLError("Failed to fetch movie");
+      throw new GraphQLError('Failed to fetch movie');
     }
   }
 
@@ -57,12 +54,17 @@ export class MovieService {
       });
       if (movieExists) {
         logger.warn(`Attempt to create duplicate movie: ${input.title}`);
-        throw new GraphQLError("Movie already exists");
+        throw new GraphQLError('Movie already exists');
       }
 
-      const createdBy = context.user;
       context.user?.id || null;
+      const genreDoc = await Genre.findOne({ name: input.genre });
+      if (!genreDoc) {
+        throw new GraphQLError('Genre not found');
+      }
 
+      input.genre = genreDoc._id.toString();
+      const createdBy = context.user?.id;
       const newMovie = new Movie({
         ...input,
         createdBy,
@@ -72,13 +74,13 @@ export class MovieService {
       });
 
       const savedMovie = await newMovie.save();
-      await savedMovie.populate(["createdBy", "updatedBy"]);
+      await savedMovie.populate(['createdBy', 'updatedBy']);
 
       logger.info(`Movie created: ${input.title}`, { movieId: savedMovie._id });
       return savedMovie;
     } catch (error) {
       logger.error(`Error creating movie: ${error.message}`);
-      throw new GraphQLError("Failed to create movie");
+      throw new GraphQLError(`Failed to create movie ${error.message}`);
     }
   }
 
@@ -89,7 +91,7 @@ export class MovieService {
       const movieExists = await Movie.exists({ _id: id });
       if (!movieExists) {
         logger.warn(`Attempt to delete non-existent movie with ID ${id}`);
-        throw new GraphQLError("Movie not found");
+        throw new GraphQLError('Movie not found');
       }
       const updatedMovie = await Movie.findByIdAndUpdate(
         id,
@@ -98,21 +100,21 @@ export class MovieService {
           updatedBy: context.user.id,
           updatedAt: new Date(),
         },
-        { new: true }
-      ).populate(["createdBy", "updatedBy"]);
+        { new: true },
+      ).populate(['createdBy', 'updatedBy']);
 
       logger.info(`Movie deleted: ${id}`);
       return updatedMovie;
     } catch (error) {
       logger.error(`Error deleting movie ${id}: ${error.message}`);
-      throw new GraphQLError("Failed to delete movie");
+      throw new GraphQLError('Failed to delete movie');
     }
   }
 
   static async updateMovie(
     _,
     { id, input }: { id: string; input: Partial<UpdateMovieInput> },
-    context
+    context,
   ) {
     restrictRole(context, [UserRole.CUSTOMER, UserRole.THEATER_ADMIN]);
 
@@ -120,7 +122,7 @@ export class MovieService {
       const movieExists = await Movie.exists({ _id: id });
       if (!movieExists) {
         logger.warn(`Attempt to update non-existent movie with ID ${id}`);
-        throw new GraphQLError("Movie not found");
+        throw new GraphQLError('Movie not found');
       }
 
       const updatedMovie = await Movie.findByIdAndUpdate(
@@ -133,14 +135,14 @@ export class MovieService {
         {
           new: true,
           runValidators: true,
-        }
-      ).populate(["createdBy", "updatedBy"]);
+        },
+      ).populate(['createdBy', 'updatedBy']);
 
       logger.info(`Movie updated: ${id}`);
       return updatedMovie;
     } catch (error) {
       logger.error(`Error updating movie ${id}: ${error.message}`);
-      throw new GraphQLError("Failed to update movie");
+      throw new GraphQLError('Failed to update movie');
     }
   }
 }

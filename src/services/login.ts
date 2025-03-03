@@ -30,5 +30,5 @@ export const login = async (_: any, { input }: any, context) => {
 
   logger.info(`User ${email} logged in successfully`);
 
-  return { token, message: 'Login successful' };
+  return { token, role: user.role };
 };

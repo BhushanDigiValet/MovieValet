@@ -12,6 +12,9 @@ export class ShowResolver {
 
     try {
       let filter: Record<string, any> = { isDeleted: false };
+      if (args.id) {
+        filter.movieId = args.id;
+      }
 
       if (context.user.role === UserRole.CUSTOMER) {
         filter.showTime = { $gte: new Date() };

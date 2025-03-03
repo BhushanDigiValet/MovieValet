@@ -36,7 +36,7 @@ const userDefs = `#graphql
 
   type AuthPayload {
     token: String
-    message: String
+    role: UserRole
   }
   
   type OutputRegister {

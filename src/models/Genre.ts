@@ -1,5 +1,4 @@
-import { Document, model, Schema } from "mongoose";
-
+import { Document, model, Schema } from 'mongoose';
 
 interface IGenre extends Document {
   name: string;
@@ -34,3 +33,5 @@ async function seedGenres() {
 }
 
 export { Genre, seedGenres };
+{
+}

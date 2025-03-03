@@ -36,7 +36,7 @@ input UpdateShowInput {
 # Define the Query type to fetch data
 type Query {
   show(id: ID!): Show
-  shows: [Show]
+  shows(id: ID): [Show]
 }
 
 # Define the Mutation type to modify data

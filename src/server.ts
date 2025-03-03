@@ -43,8 +43,8 @@ const createServer = async () => {
     '/',
     expressMiddleware(server, {
       context: async ({ req, res }): Promise<MyContext> => {
-        const token = req.headers.authorization;
-        // const token = req.headers.authorization?.split("Bearer ")[1];
+        // const token = req.headers.authorization;
+        const token = req.headers.authorization?.split("Bearer ")[1];
         const user = token ? await getUserFromToken(token) : null;
         return { user, req, res };
       },

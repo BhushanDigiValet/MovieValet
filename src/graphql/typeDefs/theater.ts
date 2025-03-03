@@ -40,7 +40,7 @@ const theaterTypeDefs = `#graphql
   }
 
   type Query {
-    theaters: [Theater!]!
+    theaters(adminId: ID): [Theater!]!
     theater(id: ID!): Theater!
   }
 

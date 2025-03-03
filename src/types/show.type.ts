@@ -1,6 +1,6 @@
 export interface ShowInput {
-  movieId: string;
-  theaterId: string;
+  movieName: string;
+  theaterName: string;
   showTime: string;
   amount: number;
   showStartTime: Date;

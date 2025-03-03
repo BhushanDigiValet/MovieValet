@@ -8,12 +8,16 @@ import { CreateTheaterInput } from '../types/theater.type';
 
 export class TheaterService {
   static async theaters(_, args, context) {
-    restrictRole(context, [UserRole.THEATER_ADMIN]);
+    restrictRole(context, []);
 
     try {
       logger.info(`User ${context.user.id} is fetching all theaters`);
-
-      const theaters = await Theater.find({ isDeleted: false }).populate([
+      
+      const filter: Record<string, any> = { isDeleted: false };
+      if(args.adminId){
+        filter.adminId=args.adminId;
+      }
+      const theaters = await Theater.find(filter).populate([
         'adminId',
         'createdBy',
         'updatedBy',

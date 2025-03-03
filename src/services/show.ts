@@ -12,8 +12,11 @@ export class ShowResolver {
 
     try {
       let filter: Record<string, any> = { isDeleted: false };
-      if (args.id) {
-        filter.movieId = args.id;
+      if (args.movieId) {
+        filter.movieId = args.movieId;
+      }
+      if (args.theaterId) {
+        filter.id = args.theaterId;
       }
 
       if (context.user.role === UserRole.CUSTOMER) {
@@ -23,17 +26,25 @@ export class ShowResolver {
 
       if (context.user.role === UserRole.THEATER_ADMIN) {
         filter.adminId = context.user.id;
-        const theater = await Theater.findOne(filter).populate([
+
+        logger.info(filter);
+        const theater = await Theater.findOne({
+          _id: args.theaterId,
+          adminId: context.user.id,
+          isDeleted: false,
+        });
+        logger.info(`theater ${theater}`);
+
+        if (!theater) {
+          logger.error(`Theater Admin does not have an associated theater`);
+          throw new GraphQLError('Theater Admin does not have an associated theater.');
+        }
+
+        return Show.find({ theaterId: args.theaterId }).populate([
           'movieId',
           'theaterId',
           'createdBy',
         ]);
-
-        if (!theater) {
-          throw new GraphQLError('Theater Admin does not have an associated theater.');
-        }
-
-        return Show.find(filter).populate(['movieId', 'theaterId', 'createdBy']);
       }
 
       return Show.find(filter).populate(['movieId', 'theaterId', 'createdBy']);
@@ -81,15 +92,16 @@ export class ShowResolver {
 
   static createShow = async (_, { input }: { input: ShowInput }, context) => {
     restrictRole(context, [UserRole.CUSTOMER]);
-    const { movieId, theaterId, showStartTime, showEndTime, amount } = input;
+    const { movieName, theaterName, showStartTime, showEndTime, amount } = input;
 
     try {
-      const movieExists = await Movie.exists({ _id: movieId });
-
+      const movieExists = await Movie.findOne({ title: movieName });
       if (!movieExists) throw new GraphQLError('Invalid movieId. Movie not found.');
+      const movieId = movieExists.id;
 
-      const theaterExists = await Theater.exists({ _id: theaterId });
+      const theaterExists = await Theater.findOne({ name: theaterName });
       if (!theaterExists) throw new GraphQLError('Invalid theaterId. Theater not found.');
+      const theaterId = theaterExists.id;
 
       const isAdminOfTheater = await Theater.exists({
         _id: theaterId,
@@ -142,18 +154,18 @@ export class ShowResolver {
         throw new GraphQLError('Theater Admin can only update shows for their theater.');
       }
 
-      if (input.movieId) {
-        const movieExists = await Movie.exists({ _id: input.movieId });
+      if (input.movieName) {
+        const movieExists = await Movie.findOne({ title: input.movieName });
 
         if (!movieExists) throw new GraphQLError('Invalid movieId. Movie not found.');
       }
 
-      if (input.theaterId) {
-        const theaterExists = await Theater.exists({ _id: input.theaterId });
+      if (input.theaterName) {
+        const theaterExists = await Theater.findOne({ name: input.theaterName });
         if (!theaterExists) throw new GraphQLError('Invalid theaterId. Theater not found.');
 
         const isAdminOfTheater = await Theater.exists({
-          _id: input.theaterId,
+          _id: theaterExists.id,
           adminId: context.user.id,
         });
 

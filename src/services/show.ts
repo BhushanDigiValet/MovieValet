@@ -13,6 +13,7 @@ export class ShowResolver {
     try {
       let filter: Record<string, any> = { isDeleted: false };
       if (args.movieId) {
+        logger.info(`movieId: ${args.movieId}`);
         filter.movieId = args.movieId;
       }
       if (args.theaterId) {
@@ -20,8 +21,10 @@ export class ShowResolver {
       }
 
       if (context.user.role === UserRole.CUSTOMER) {
-        filter.showTime = { $gte: new Date() };
+       // filter.showTime = { $gte: new Date() };
+        logger.info(`movieId: ${args.movieId}`);
         return Show.find(filter).populate(['movieId', 'theaterId']);
+       
       }
 
       if (context.user.role === UserRole.THEATER_ADMIN) {

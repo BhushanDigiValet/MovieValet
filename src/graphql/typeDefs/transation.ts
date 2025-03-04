@@ -32,7 +32,7 @@ type Query {
 }
 
 type Mutation {
-  createTransaction(id:ID! ,input: CreateTransactionInput!): Transaction!
+  createTransaction(input: CreateTransactionInput!): Transaction!
 }`;
 
 export default transactionTypeDefs;

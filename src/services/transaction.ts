@@ -34,23 +34,22 @@ class TransactionService {
   }
 
   static async createTransaction(
-    id: string,
-    input: {
-      amount: number;
-      paymentMethod: string;
-      status: TransactionStatus;
-      userCredential: IUserCredential;
-    },
-    context,
+    _parent: any, 
+    args: {
+      input: {
+        amount: number;
+        paymentMethod: string;
+        status: TransactionStatus;
+        userCredential: IUserCredential;
+      };
+    }, // Args object
+    context: any, 
   ) {
-    restrictRole(context, [UserRole.THEATER_ADMIN]);
+    const { input } = args; 
+    const { amount } = input;
 
     try {
-      const reservation = await Reservation.findById(id);
-      if (!reservation) {
-        logger.warn(`${context.user.id} please provide a valid reservation ID`);
-        throw new GraphQLError(`${context.user.id} please provide a valid reservation ID`);
-      }
+      logger.info(`Input value: ${amount}`);
 
       credentialCheck(input.userCredential);
 
@@ -60,11 +59,7 @@ class TransactionService {
         throw new GraphQLError('Failed to create transaction.');
       }
 
-      reservation.transactionId = transaction.id;
-      await reservation.save();
-
-      logger.info(`Transaction ID: ${transaction.id} added to Reservation ID: ${reservation.id}`);
-
+      logger.info(`Transaction ID: ${transaction.id}`);
       return transaction;
     } catch (error) {
       logger.error(`Error in Transaction Creation: ${error.message}`);

@@ -133,7 +133,7 @@ export class ReservationService {
   static async createReservation(_, { input }: { input: ReservationInput }, context) {
     restrictRole(context, [UserRole.THEATER_ADMIN]);
 
-    const { showId, seatNumber } = input;
+    const { showId, seatNumber, transactionId } = input;
     const userId = context.user.id;
 
     try {
@@ -164,6 +164,7 @@ export class ReservationService {
         _id: reservationId,
         userId,
         showId,
+        transactionId,
         seatNumber,
         qrTicket,
         reservationTime: new Date(),

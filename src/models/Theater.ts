@@ -4,10 +4,10 @@ import { ILocation } from '../types/defaultValue';
 export interface ITheater extends Document {
   name: string;
   location: ILocation;
-  adminId: Types.ObjectId; // Use Types.ObjectId
+  adminId: Types.ObjectId; 
   isDeleted: boolean;
-  createdBy?: Types.ObjectId; // Use Types.ObjectId
-  updatedBy?: Types.ObjectId; // Use Types.ObjectId
+  createdBy?: Types.ObjectId; 
+  updatedBy?: Types.ObjectId; 
   createdAt: Date;
   updatedAt: Date;
 }

@@ -8,7 +8,11 @@ import logger from '../utils/loggers';
 import mongoose from 'mongoose';
 
 export class ReservationService {
-  static async getReservations(_, { theaterId }: { theaterId: string }, context) {
+  static async getReservations(
+    _,
+    { theaterId, showId }: { theaterId: string; showId: string },
+    context,
+  ) {
     const filter: Record<string, any> = { isDeleted: false };
 
     try {
@@ -33,11 +37,17 @@ export class ReservationService {
       if (context.user.role === UserRole.CUSTOMER) {
         filter.userId = context.user.id;
       }
+      if (showId) {
+        filter.showId = showId;
+        logger.info(`Fetching reservations by showId ${showId}`);
+      }
       logger.info(
         `Fetching reservations for user ${context.user.id} with filter: ${JSON.stringify(filter)}`,
       );
-      const reservations = await Reservation.find(filter).lean();
-
+      const reservations = await Reservation.find(filter).populate({
+        path: 'showId',
+        populate: ['movieId', 'theaterId'],
+      });
       logger.info(`Fetched ${reservations.length} reservations for user ${context.user.id}`);
       return reservations;
     } catch (error) {

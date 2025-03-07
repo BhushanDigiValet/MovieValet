@@ -6,6 +6,7 @@ import { UserRole } from '../types/defaultValue';
 import QRCode from 'qrcode';
 import logger from '../utils/loggers';
 import mongoose from 'mongoose';
+import createServer from '../server';
 
 export class ReservationService {
   static async getReservations(
@@ -44,10 +45,15 @@ export class ReservationService {
       logger.info(
         `Fetching reservations for user ${context.user.id} with filter: ${JSON.stringify(filter)}`,
       );
-      const reservations = await Reservation.find(filter).populate({
-        path: 'showId',
-        populate: ['movieId', 'theaterId'],
-      });
+      const reservations = await Reservation.find(filter).populate([
+        {
+          path: 'showId',
+          populate: ['movieId', 'theaterId'],
+        },
+        {
+          path: 'userId',
+        },
+      ]);
       logger.info(`Fetched ${reservations.length} reservations for user ${context.user.id}`);
       return reservations;
     } catch (error) {
@@ -179,6 +185,19 @@ export class ReservationService {
         qrTicket,
         reservationTime: new Date(),
       });
+
+      const populatedResrvation = await reservation.populate([
+        {
+          path: 'showId',
+          populate: ['movieId', 'theaterId'],
+        },
+        {
+          path: 'userId',
+        },
+      ]);
+
+      const { notifyReservationUpdate } = await createServer();
+      notifyReservationUpdate(populatedResrvation);
 
       return reservation;
     } catch (error) {

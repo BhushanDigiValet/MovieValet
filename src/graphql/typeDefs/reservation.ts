@@ -1,5 +1,16 @@
 const reservationTypeDefs = `#graphql 
-
+type User{
+    id:ID!
+    username: String!
+    email: String!
+    role: UserRole!
+    isDefault: Boolean!
+    createdBy: ID
+    updatedBy: ID
+    createdAt: String!
+    updatedAt: String
+    cityId: city
+  }
   type Theater {
     id: ID!
     name: String!
@@ -43,7 +54,7 @@ const reservationTypeDefs = `#graphql
    }
     type Reservation {
   id: ID!
-  userId: ID!
+  userId: User!
   showId: showId!
   transactionId: ID
   reservationTime: String!

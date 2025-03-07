@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../models';
 import dotenv from 'dotenv';
+import logger from '../utils/loggers';
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET || 'JWT_SECRET';
@@ -38,6 +39,8 @@ export const getUserFromToken = async (token: string) => {
 
     return { id: decoded.id, username: decoded.username, role: decoded.role };
   } catch (error) {
+    logger.error(`Error in token decoding: ${error.message}`);
+
     return null;
   }
 };

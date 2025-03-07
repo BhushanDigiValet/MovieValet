@@ -1,5 +1,5 @@
 import { GraphQLError } from 'graphql';
-import { Reservation, Transaction } from '../models';
+import { Transaction } from '../models';
 import { IUserCredential, TransactionStatus, UserRole } from '../types/defaultValue';
 import { restrictRole } from '../Auth/authorization';
 import logger from '../utils/loggers';
@@ -34,7 +34,7 @@ class TransactionService {
   }
 
   static async createTransaction(
-    _parent: any, 
+    _,
     args: {
       input: {
         amount: number;
@@ -43,9 +43,9 @@ class TransactionService {
         userCredential: IUserCredential;
       };
     }, // Args object
-    context: any, 
+    
   ) {
-    const { input } = args; 
+    const { input } = args;
     const { amount } = input;
 
     try {

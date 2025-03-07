@@ -7,7 +7,7 @@ import logger from './utils/loggers';
 const startServer = async () => {
   try {
     await connectDB();
-    const httpServer = await createServer();
+    const {httpServer} = await createServer();
     const PORT = process.env.PORT || 4001;
     httpServer.listen(PORT, () => {
       logger.info(`🚀 Server ready at http://localhost:${PORT}/`);

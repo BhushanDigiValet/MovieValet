@@ -7,6 +7,8 @@ import http from 'http';
 import cors from 'cors';
 import { typeDefs, resolvers } from './graphql';
 import { getUserFromToken } from './Auth/auth';
+import { Server } from 'socket.io';
+import { UserRole } from './types/defaultValue';
 
 interface MyContext {
   user?: {
@@ -17,10 +19,48 @@ interface MyContext {
   req: express.Request;
   res: express.Response;
 }
+const adminSockets = new Map<string, any>();
 
 const createServer = async () => {
   const app = express();
   const httpServer = http.createServer(app);
+
+  const io = new Server(httpServer, {
+    cors: {
+      origin: 'http://localhost:4200',
+      credentials: true,
+    },
+  });
+
+  io.on('connection', (socket) => {
+    const token = socket.handshake.auth?.token;
+    if (!token) {
+      console.log('Unauthorized socket connection attempt.');
+      socket.disconnect();
+      return;
+    }
+
+    getUserFromToken(token).then((user) => {
+      if (user?.role === UserRole.ADMIN) {
+        console.log(`Admin connected: ${user.username}, Socket ID: ${socket.id}`);
+        adminSockets.set(user.id, socket);
+
+        socket.on('disconnect', () => {
+          console.log(`Admin disconnected: ${user.username}`);
+          adminSockets.delete(user.id);
+        });
+      } else {
+        console.log('Non-admin connection blocked');
+        socket.disconnect();
+      }
+    });
+  });
+
+  const notifyReservationUpdate = (reservationData: any) => {
+    adminSockets.forEach((socket) => {
+      socket.emit('reservationUpdated', reservationData);
+    });
+  };
 
   const server = new ApolloServer<MyContext>({
     typeDefs,
@@ -43,15 +83,14 @@ const createServer = async () => {
     '/',
     expressMiddleware(server, {
       context: async ({ req, res }): Promise<MyContext> => {
-        // const token = req.headers.authorization;
-        const token = req.headers.authorization?.split("Bearer ")[1];
+        const token = req.headers.authorization?.split('Bearer ')[1] || req.headers.authorization;
         const user = token ? await getUserFromToken(token) : null;
         return { user, req, res };
       },
     }),
   );
 
-  return httpServer;
+  return { httpServer, notifyReservationUpdate };
 };
 
 export default createServer;

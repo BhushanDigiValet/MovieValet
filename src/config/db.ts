@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import logger from '../utils/loggers';
 
-
 dotenv.config();
 
 const connectDB = async () => {
@@ -14,19 +13,6 @@ const connectDB = async () => {
 
     const connection = await mongoose.connect(mongoUri);
     logger.info(`Database connected: ${connection.connection.host}`);
-
-    // Seed genres only in development mode
-    // if (process.env.NODE_ENV !== "production") {
-    //   await seedGenres();
-    // }
-
-    // Seed City only in development mode
-    // if (process.env.NODE_ENV !== "production") {
-    //   await seedCity();
-    //   logger.info("Cities seeded successfully!");
-    // } else {
-    //   logger.info("Can not seeded! Cities ");
-    // }
   } catch (error) {
     logger.error(` Database Connection Error: ${(error as Error).message}`);
   }
